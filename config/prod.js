@@ -1,5 +1,5 @@
-const helmet = require('helmet');
 
-module.exports = function (app) {
-    app.use(helmet())
+module.exports = {
+    mongoURI: process.env.mongoURI,
+    secretOrKey: process.env.SECRET_OR_KEY
 }

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 require("dotenv").config();
-require('./config/prod')(app);
+//require('./config/prod')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const compression = require('compression');
@@ -45,3 +45,7 @@ mongoose
             console.log("Server and DB running");
         });
     });
+
+
+    //213.230.88.53/32 
+    //studymarkaz.herokuapp.com/

@@ -24,13 +24,11 @@ const schema = mongoose.Schema(
             type: String,
             required: true
         },
-        // status: {
-        //     enum: [
-        //         "active",
-        //         "unactive"
-        //     ],
-        //     default: "unactive"
-        // },
+        status: {
+            type: String,
+            enum: ["true", "false"],
+            default: "false"
+        },
         phone: {
             type: Number,
         },

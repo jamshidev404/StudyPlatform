@@ -10,7 +10,7 @@ exports.create = async (req, res, next) => {
     user.password = password;
     user.save()
         .then(() => {
-            return res.status(200).json({ success: true });
+            return res.status(200).json({ success: true, data: user });
         })
         .catch((err) => {
             res.status(400).json({ success: false, err });
@@ -39,16 +39,16 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getAll = async (req, res, next) => {
-    await User.findOne()
+    await User.find()
         .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
             return res.status(200).json({ success: true, data })
         });
 };
-
+ 
 exports.me = async (req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.slice(" ")[1];
     const user = jwt.decode(token);
     await User.findOne({ _id: user.id })
     .exec( (err, data) => {
