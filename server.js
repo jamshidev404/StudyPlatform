@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 require("dotenv").config();
+require('./config/prod')(app);
 const cors = require('cors');
 const mongoose = require('mongoose');
 const compression = require('compression');
@@ -24,7 +25,7 @@ app.use(
 
 // Routes
 app.use("/api/create", require("./routes/UserRouter"));
-// app.use("/api/", require("./routes"));
+app.use("/api/upload", require("./routes/UploadRouter"));
 // app.use("/api/", require("./routes"));
 // app.use("/api/", require("./routes"));
 

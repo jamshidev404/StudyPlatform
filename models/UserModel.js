@@ -9,7 +9,7 @@ const schema = mongoose.Schema(
         },
         role: {
             type: String,
-            enam: [
+            enum: [
                 "superadmin", "admin",
                 "moderator", "user"],
             default: "user"
@@ -24,8 +24,26 @@ const schema = mongoose.Schema(
             type: String,
             required: true
         },
-        payment: {
-            
+        // status: {
+        //     enum: [
+        //         "active",
+        //         "unactive"
+        //     ],
+        //     default: "unactive"
+        // },
+        phone: {
+            type: Number,
+        },
+        group: {
+            type: String
+        },
+        eduType: {
+            type: String,
+            enum: ["online", "offline"],
+            default: "offline"
+        },
+        science: {
+            type: String
         }
 
     },
