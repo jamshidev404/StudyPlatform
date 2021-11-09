@@ -23,6 +23,8 @@ exports.del = async (req, res) => {
           }
         });
         await uploadSchema.findByIdAndDelete({ _id: req.params.id });
+        res.status(200).json({ message: "Deleted" })
       }
-    });
+    })
+    
 };

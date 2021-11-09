@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express();
 require("dotenv").config();
-//require('./config/prod')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const compression = require('compression');
@@ -32,6 +31,7 @@ app.use("/api/upload", require("./routes/UploadRouter"));
 
 const port = process.env.PORT || 7000;
 const DB_URI = process.env.DB_URI;
+
 // App & MongoDB Connections
 mongoose
     .connect(DB_URI, {
@@ -45,7 +45,3 @@ mongoose
             console.log("Server and DB running");
         });
     });
-
-
-    //213.230.88.53/32 
-    //studymarkaz.herokuapp.com/
