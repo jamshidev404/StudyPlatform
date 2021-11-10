@@ -4,10 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "node server.js",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
-  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -27,5 +25,8 @@
     "nodemon": "^2.0.14",
     "winston": "^3.3.3",
     "winston-mongodb": "^5.0.7"
+  },
+  "engines": {
+    "node": "^14.17.6"
   }
 }
