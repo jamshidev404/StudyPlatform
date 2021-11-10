@@ -22,6 +22,10 @@ app.use(
     })
 );
 
+app.get("/create", (req, res) => {
+    res.send("Hello World")
+})
+
 // Routes
 app.use("/api/create", require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
