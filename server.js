@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const compression = require("compression");
 
 app.use(express.json());
@@ -23,7 +23,7 @@ app.use(
 );
 
 app.get("/create", (req, res) => {
-    res.send("Hello World")
+  res.send("Hello World")
 })
 
 // Routes
@@ -34,15 +34,21 @@ app.use("/api/upload", require("./routes/UploadRouter"));
 // app.use("/api/", require("./routes"));
 
 const port = process.env.PORT || 7000;
-const DB_URI = process.env.DB_URI;
+//const DB_URI = process.env.DB_URI;
+const mongoDB = "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority"
 
-// App & MongoDB Connections
-// mongoose.connect(DB_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   //useFindAndModify: false,
-//   //useCreateIndex: true
-// });
-app.listen(port, () => {
-  console.log("Server and DB running");
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  //useFindAndModify: false,
+  //useCreateIndex: true
+}).then(() => {
+  console.log("connect successful");
+}).catch((err) => {
+  console.log("no connection");
 });
+
+
+app.listen(port, () => {
+  console.log("Server is running");
+})
