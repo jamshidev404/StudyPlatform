@@ -28,7 +28,7 @@ app.get("/create", (req, res) => {
 
 // Routes
 
-app.use("/api/create", require("./routes/UserRouter"));
+app.use("/api/user", require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
 // app.use("/api/", require("./routes"));
 // app.use("/api/", require("./routes"));
