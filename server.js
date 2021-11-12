@@ -43,11 +43,10 @@ mongoose.connect(mongoDB, {
   //useFindAndModify: false,
   //useCreateIndex: true
 }).then(() => {
-  console.log("connect successful");
+  console.log("Connect successful");
 }).catch((err) => {
   console.log("no connection");
 });
-
 
 app.listen(port, () => {
   console.log("Server is running");
