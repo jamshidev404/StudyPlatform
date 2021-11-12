@@ -1,3 +1,4 @@
+const { promisify } = require("util")
 const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -34,9 +35,9 @@ exports.login = async (req, res, next) => {
 
             const payload = { id: data._id };
 
-            const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY);
-
-            return res.status(200).json({ success: true, data: token })
+            const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: process.env.TOKEN_EXPIRES_IN });
+            console.log(token)
+            return res.status(200).json({ success: true, token })
         });
 };
 
@@ -50,11 +51,13 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.me = async (req, res, next) => {
-    const token = req.headers.authorization.slice(" ")[1];
-    const user = jwt.decode(token);
-    await User.findOne({ _id: user.id })
+    //console.log(req.headers.authorization) 
+    const token = req.headers.authorization.split(" ")[1];
+    const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
+    console.log(token, user)
+    await User.findById(user.id)
         .exec((err, data) => {
-            if (err) return res.status(400).json({ success: false, err });
+            if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data })
         })
 };
