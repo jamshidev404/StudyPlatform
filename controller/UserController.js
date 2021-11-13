@@ -15,8 +15,8 @@ exports.create = async (req, res, next) => {
             return res.status(200).json({ success: true, data: user });
         })
         .catch((err) => {
-            console.log(err)
-            //   return  res.status(400).json({ success: false, err });
+            //console.log(err)
+               return  res.status(400).json({ success: false, err });
         })
 };
 
@@ -51,7 +51,6 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.me = async (req, res, next) => {
-    //console.log(req.headers.authorization) 
     const token = req.headers.authorization.split(" ")[1];
     const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
     console.log(token, user)

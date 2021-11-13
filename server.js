@@ -30,7 +30,7 @@ app.get("/create", (req, res) => {
 
 app.use("/api/user", require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
-// app.use("/api/", require("./routes"));
+app.use("/api/qabul", require("./routes/Acceptance"));
 // app.use("/api/", require("./routes"));
 
 const port = process.env.PORT || 7000;

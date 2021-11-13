@@ -11,7 +11,7 @@ const schema = mongoose.Schema(
             type: String,
             enum: [
                 "superadmin", "admin",
-                "moderator", "user"],
+                "moderator", "teacher", "user"],
             default: "user"
         },
         login: {
@@ -32,13 +32,20 @@ const schema = mongoose.Schema(
         phone: {
             type: Number,
         },
+        experience: {
+            type: String,
+        },
         group: {
-            type: String
+            type: String,
+            group: []
         },
         eduType: {
             type: String,
             enum: ["online", "offline"],
             default: "offline"
+        },
+        science: {
+            type: String
         },
         science: {
             type: String
