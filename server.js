@@ -31,7 +31,7 @@ app.get("/create", (req, res) => {
 app.use("/api/user", require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
 app.use("/api/qabul", require("./routes/Acceptance"));
-// app.use("/api/", require("./routes"));
+app.use("/api/exam", require("./routes/ExamRouter"));
 
 const port = process.env.PORT || 7000;
 //const DB_URI = process.env.DB_URI;
