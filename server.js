@@ -27,7 +27,9 @@ app.use("/api/user", require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
 app.use("/api/qabul", require("./routes/Acceptance"));
 app.use("/api/exam", require("./routes/ExamRouter"));
-app.use("/api/center", require("./routes/CenterModel"));
+app.use("/api/center", require("./routes/CenterRouter"));
+app.use("/api/group", require("./routes/GroupRouter"));
+app.use("/api/pupil", require("./routes/PupilRouter"));
 
 const port = process.env.PORT || 7000;
 const mongoDB = "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority"
