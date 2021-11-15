@@ -29,7 +29,7 @@ exports.login = async (req, res, next) => {
                 res.status(404).json({ success: false, data: 'User not found' });
 
             if (!bcrypt.compareSync(req.body.password, data.password)) {
-                return res.status(400).json({ success: false, data: "password wrong" })
+                return res.status(400).json({ success: false, data: "Password wrong" })
             };
 
             const payload = { id: data._id };

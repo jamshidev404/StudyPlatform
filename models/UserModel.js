@@ -10,7 +10,7 @@ const schema = mongoose.Schema(
         role: {
             type: String,
             enum: [
-                "superadmin", "admin",
+                "superadmin", "admin", "parent",
                 "moderator", "teacher", "user"],
             default: "user"
         },
@@ -30,7 +30,7 @@ const schema = mongoose.Schema(
             default: "false"
         },
         phone: {
-            type: Number,
+            type: String,
         },
         experience: {
             type: String,
@@ -43,7 +43,7 @@ const schema = mongoose.Schema(
         science: {
             type: String
         },
-        science: {
+        group: {
             type: String
         },
         image: {
@@ -55,3 +55,4 @@ const schema = mongoose.Schema(
 );
 
 module.exports = mongoose.model('User', schema);
+
