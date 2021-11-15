@@ -64,7 +64,7 @@ exports.me = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-    await User.findOne(req.params.id)
+    await User.findOne({ _id: req.params.id })
     .exec((err, data) => {
         if (err) return res.status(404).json({ success: false, err });
         return res.status(200).json({ success: true, data })
