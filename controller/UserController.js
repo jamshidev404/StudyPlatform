@@ -15,7 +15,7 @@ exports.create = async (req, res, next) => {
             return res.status(200).json({ success: true, data: user });
         })
         .catch((err) => {
-               return  res.status(400).json({ success: false, err });
+            return res.status(400).json({ success: false, err });
         })
 };
 
@@ -41,7 +41,10 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getAll = async (req, res, next) => {
+    const { page = 1, limit = 10 } = req.query
     await User.find()
+    .skip((page - 1) * limit)
+    .limit(limit * 1)
         .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });

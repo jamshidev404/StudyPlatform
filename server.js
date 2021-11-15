@@ -40,7 +40,7 @@ mongoose.connect(mongoDB, {
 }).then(() => {
   console.log("Connect successful");
 }).catch((err) => {
-  console.log(err);
+  console.log("no connection", err);
 });
 
 app.listen(port, () => {
