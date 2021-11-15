@@ -27,7 +27,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.me = async (req, res, next) => {
-    console.log(req.body)
+    //console.log(req.body)
     await Qabulxona.findOne({ _id: req.params.id })
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
