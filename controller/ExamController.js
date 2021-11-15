@@ -1,11 +1,11 @@
 const Exam = require("../models/ExamModel");
 
 exports.create = async (req, res) => {
-    let user = await Exam(req.body);
+    let result =  new Exam(req.body);
 
-    await user.save()
+    await result.save()
         .then(() => {
-            return res.status(200).json({ success: true, data: user });
+            return res.status(200).json({ success: true, data: result });
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });

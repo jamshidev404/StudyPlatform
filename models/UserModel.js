@@ -17,7 +17,7 @@ const schema = mongoose.Schema(
         login: {
             type: String,
             required: true,
-            lowercase: true,
+            //lowercase: true,
             unique: true
         },
         password: {
@@ -35,10 +35,6 @@ const schema = mongoose.Schema(
         experience: {
             type: String,
         },
-        group: {
-            type: String,
-            group: []
-        },
         eduType: {
             type: String,
             enum: ["online", "offline"],
@@ -48,6 +44,9 @@ const schema = mongoose.Schema(
             type: String
         },
         science: {
+            type: String
+        },
+        image: {
             type: String
         }
 

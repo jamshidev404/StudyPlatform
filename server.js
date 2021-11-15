@@ -22,19 +22,14 @@ app.use(
   }),
 );
 
-app.get("/create", (req, res) => {
-  res.send("Hello World")
-})
-
 // Routes
-
 app.use("/api/user", require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
 app.use("/api/qabul", require("./routes/Acceptance"));
 app.use("/api/exam", require("./routes/ExamRouter"));
+app.use("/api/center", require("./routes/CenterModel"));
 
 const port = process.env.PORT || 7000;
-//const DB_URI = process.env.DB_URI;
 const mongoDB = "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority"
 
 mongoose.connect(mongoDB, {

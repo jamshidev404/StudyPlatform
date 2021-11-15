@@ -15,7 +15,6 @@ exports.create = async (req, res, next) => {
             return res.status(200).json({ success: true, data: user });
         })
         .catch((err) => {
-            //console.log(err)
                return  res.status(400).json({ success: false, err });
         })
 };
@@ -77,4 +76,4 @@ exports.deleteOne = async (req, res, next) => {
         if (err) return res.status(400).json({ success: false, err });
         return res.status(200).json({ success: true, data })
     })
-}
+};
