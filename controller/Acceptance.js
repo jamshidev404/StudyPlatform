@@ -23,10 +23,11 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.me = async (req, res, next) => {
-    await Qabulxona.findOne(req.params.id)
+    console.log(req.body)
+    await Qabulxona.findOne({ _id: req.params.id })
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, data })
+                     return res.status(200).json({ success: true, data: data })
         });
 };
 
