@@ -14,7 +14,10 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
+    const { page = 1, limit = 10 } = req.query
     await Qabulxona.find()
+        .skip((page - 1) * limit)
+        .limit(limit * 1)
         .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
@@ -27,7 +30,7 @@ exports.me = async (req, res, next) => {
     await Qabulxona.findOne({ _id: req.params.id })
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
-                     return res.status(200).json({ success: true, data: data })
+            return res.status(200).json({ success: true, data: data })
         });
 };
 
@@ -44,8 +47,8 @@ exports.updateOne = async (req, res, next) => {
 
 exports.rm = async (req, res, next) => {
     await Qabulxona.deleteOne({ _id: req.params.id })
-    .exec((err, data) => {
-        if (err) return res.status(400).json({ success: false, err })
-        return res.status(200).json({ success: true, data: data })
-    })
+        .exec((err, data) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ success: true, data: data })
+        })
 };
