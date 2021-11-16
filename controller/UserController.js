@@ -12,7 +12,7 @@ exports.create = async (req, res, next) => {
     user.password = password;
     user.save()
         .then(() => {
-            return res.status(200).json({ success: true, data: user });
+            return res.status(200).json({ success: true, data: user_id });
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });

@@ -48,6 +48,17 @@ const schema = mongoose.Schema(
         },
         image: {
             type: String
+        },
+        gender: {
+            type: String
+        },
+        date: {
+            type: String,
+            //required: true
+        },
+        address: {
+            type: String,
+            //required: true
         }
 
     },
