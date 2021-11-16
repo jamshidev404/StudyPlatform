@@ -20,12 +20,13 @@ exports.create = async (req, res) => {
                 isPayed: req.body.isPayed
             })
 
-            await pupil.save()
+            pupil.save().then(res => {
+                return res.status(200).json({ success: true, data: pupil })
+            }).catch(err => {
+                return res.status(400).json({ success: false, err }); s
+            });
 
 
-            console.log("pupil->", pupil)
-
-            return res.status(200).json({ success: true, data: pupil })
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });
