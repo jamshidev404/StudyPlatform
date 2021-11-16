@@ -13,6 +13,7 @@ exports.create = async (req, res) => {
     await user.save()
         .then(() => {
             let pupil = new Pupil({
+                name: req.body.name,
                 address: req.body.address,
                 user_id: user._id,
                 group_id: req.body.group_id,

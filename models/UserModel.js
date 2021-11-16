@@ -11,7 +11,8 @@ const schema = mongoose.Schema({
         type: String,
         enum: [
             "superadmin", "admin", "parent",
-            "moderator", "teacher", "user"],
+            "moderator", "teacher", "user",
+            "pupil"],
         required: true
     },
     login: {

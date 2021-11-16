@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     group_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Group",
