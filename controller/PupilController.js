@@ -1,11 +1,25 @@
 const Pupil = require("../models/PupilModel");
+const User = require("../models/UserModel");
 
 exports.create = async (req, res) => {
-    let result = new Pupil(req.body);
+    let user = new User({
+        name: req.body.name,
+        login: req.body.login,
+        role: req.body.role,
+        password: req.body.password,
+        status: req.body.status
+    });
 
-    await result.save()
+    await user.save()
         .then(() => {
-            return res.status(200).json({ success: true, data: result });
+            let pupil = new Pupil({
+                address: req.body.address,
+                user_id: user._id,
+                group_id: req.body.group_id,
+                phone: req.body.phone,
+                isPayed: req.body.isPayed
+            })
+            return res.status(200).json({ success: true, data: pupil })
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });
@@ -17,8 +31,8 @@ exports.getAll = async (req, res, next) => {
     const count = await Pupil.countDocuments()
     await Pupil.find()
         .sort({ createdAt: -1 })
-        .populate({ path: "user_id"   })
-        .populate({ path: "group_id"  })
+        .populate({ path: "user_id" })
+        .populate({ path: "group_id" })
         .skip((page - 1) * limit)
         .limit(limit * 1)
 

@@ -12,8 +12,19 @@ const schema = mongoose.Schema({
         ref: "User",
         required: true,
         index: true
+    },
+    isPayed: {  
+        type: Boolean,
+        default: false,
+    },
+    phone: {
+        type: String,
+        require: true,
+    },
+    address: {
+        type: String,
+        require: true
     }
-
 },
     { timestamps: true }
 );

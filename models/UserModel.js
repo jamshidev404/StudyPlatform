@@ -2,66 +2,64 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
 
-        name: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        role: {
-            type: String,
-            enum: [
-                "superadmin", "admin", "parent",
-                "moderator", "teacher", "user"],
-                required: true
-        },
-        login: {
-            type: String,
-            required: true,
-            //lowercase: true,
-            unique: true
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        status: {
-            type: String,
-            enum: ["true", "false"],
-            default: "false"
-        },
-        phone: {
-            type: String,
-        },
-        experience: {
-            type: String,
-        },
-        eduType: {
-            type: String,
-            enum: ["online", "offline"],
-            default: "offline"
-        },
-        science: {
-            type: String
-        },
-        group: {
-            type: String
-        },
-        image: {
-            type: String
-        },
-        gender: {
-            type: String
-        },
-        date: {
-            type: String,
-            //required: true
-        },
-        address: {
-            type: String,
-            //required: true
-        }
-
+    name: {
+        type: String,
+        required: true,
+        trim: true
     },
+    role: {
+        type: String,
+        enum: [
+            "superadmin", "admin", "parent",
+            "moderator", "teacher", "user"],
+        required: true
+    },
+    login: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: Boolean,
+        default: true,
+    },
+    // phone: {
+    //     type: String,
+    // },
+    // experience: {
+    //     type: String,
+    // },
+    // eduType: {
+    //     type: String,
+    //     enum: ["online", "offline"],
+    //     default: "offline"
+    // },
+    // science: {
+    //     type: String
+    // },
+    // group: {
+    //     type: String
+    // },
+    // image: {
+    //     type: String
+    // },
+    // gender: {
+    //     type: String
+    // },
+    // date: {
+    //     type: String,
+    //     //required: true
+    // },
+    // address: {
+    //     type: String,
+    //     //required: true
+    // }
+
+},
     { timestamps: true }
 );
 
