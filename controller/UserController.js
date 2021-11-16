@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.create = async (req, res, next) => {
-    //console.log(req.body)
+    console.log(req.body)
     const salt = await bcrypt.genSaltSync(12);
     const password = await bcrypt.hashSync(req.body.password, salt);
 
@@ -12,7 +12,7 @@ exports.create = async (req, res, next) => {
     user.password = password;
     user.save()
         .then(() => {
-            return res.status(200).json({ success: true, data: user_id });
+            return res.status(200).json({ success: true, data: user });
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });

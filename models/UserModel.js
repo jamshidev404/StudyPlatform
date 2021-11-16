@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const schema = mongoose.Schema(
-    {
+const schema = mongoose.Schema({
+
         name: {
             type: String,
             required: true,
@@ -12,7 +12,7 @@ const schema = mongoose.Schema(
             enum: [
                 "superadmin", "admin", "parent",
                 "moderator", "teacher", "user"],
-            default: "user"
+                required: true
         },
         login: {
             type: String,
@@ -62,7 +62,7 @@ const schema = mongoose.Schema(
         }
 
     },
-    { timestamps: true } //
+    { timestamps: true }
 );
 
 module.exports = mongoose.model('User', schema);
