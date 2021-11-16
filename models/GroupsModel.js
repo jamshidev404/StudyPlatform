@@ -33,6 +33,11 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
+    edutype: {
+        type: String,
+        enum: ["online", "offline"],
+        default: "offline"
+    },
     price: {
         type: String,
         required: true
