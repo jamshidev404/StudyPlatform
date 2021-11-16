@@ -30,6 +30,7 @@ app.use("/api/exam", require("./routes/ExamRouter"));
 app.use("/api/center", require("./routes/CenterRouter"));
 app.use("/api/group", require("./routes/GroupRouter"));
 app.use("/api/pupil", require("./routes/PupilRouter"));
+app.use("/api/teacher", require("./routes/TeacherRouter"));
 
 const port = process.env.PORT || 7000;
 const mongoDB = "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority"

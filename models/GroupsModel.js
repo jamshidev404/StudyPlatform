@@ -53,6 +53,12 @@ const schema = mongoose.Schema({
     maxpupil: {
         type: String,
         //required: true
+    },
+    user_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        index: true,
+        required: true
     }
 },
     { timestamps: true }

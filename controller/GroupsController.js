@@ -1,7 +1,7 @@
 const Group = require("../models/GroupsModel");
 
 exports.create = async (req, res) => {
-    let result =  new Group(req.body);
+    let result = new Group(req.body);
 
     await result.save()
         .then(() => {
@@ -16,9 +16,10 @@ exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
     const count = await Group.countDocuments();
     await Group.find()
+        .sort({ createdAt: -1 })
+        .populate({ path: "user_id" })
         .skip((page - 1) * limit)
         .limit(limit * 1)
-        .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
             return res.status(200).json({ success: true, data, count })
@@ -26,7 +27,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-    await Group.findOne(req.params.id)
+    await Group.findOne({ _id: req.params.id})
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data })

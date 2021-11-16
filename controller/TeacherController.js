@@ -15,18 +15,19 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
     const count = await Teacher.countDocuments()
-    await Qabulxona.find()
+    await Teacher.find()
+        .sort({ createdAt: -1 })
+        //.populate({ path: "group_id"})
         .skip((page - 1) * limit)
         .limit(limit * 1)
-        .sort({ createdAt: -1 })
         .exec((err, data) => {
-            if (err) return res.status(400).json({ success: false, err });
+            if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data, count })
         });
 };
 
-exports.me = async (req, res, next) => {
-    await Qabulxona.findOne({ _id: req.params.id })
+exports.getOne = async (req, res, next) => {
+    await Teacher.findOne({ _id: req.params.id })
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data: data })
@@ -34,7 +35,7 @@ exports.me = async (req, res, next) => {
 };
 
 exports.updateOne = async (req, res, next) => {
-    await Qabulxona.updateOne(
+    await Teacher.updateOne(
         { _id: req.params.id },
         { $set: req.body },
         { new: true }
@@ -45,7 +46,7 @@ exports.updateOne = async (req, res, next) => {
 };
 
 exports.rm = async (req, res, next) => {
-    await Qabulxona.deleteOne({ _id: req.params.id })
+    await Teacher.deleteOne({ _id: req.params.id })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err })
             return res.status(200).json({ success: true, data: data })
