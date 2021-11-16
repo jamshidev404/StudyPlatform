@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    groupname: {
+    name: {
         type: Number,
         required: true
     },
@@ -9,12 +9,20 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    time: {
+    startTime: {
         type: String,
         required: true
     },
+    endTime: {
+        type: [String],
+        required: true
+    },
+    date: {
+        type: [String],
+        required: true
+    },
     days: {
-        type: String,
+        type: Array,
         required: true
     },
     teacher: {
@@ -22,24 +30,24 @@ const schema = mongoose.Schema({
         required: true
     },
     room: {
-        type: Number,
+        type: String,
         required: true
     },
     price: {
-        type: Number,
+        type: String,
         required: true
     },
     length: {
-        type: Number,
+        type: String,
         required: true
     },
     monthlesson: {
-        type: Number,
+        type: String,
         required: true
     },
     maxpupil: {
-        type: Number,
-        required: true
+        type: String,
+        //required: true
     }
 },
     { timestamps: true }
