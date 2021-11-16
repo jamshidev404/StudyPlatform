@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    groupename: {
-        type: String,
+    groupnumber: {
+        type: Number,
         required: true
     },
     science: {
@@ -22,7 +22,7 @@ const schema = mongoose.Schema({
         required: true
     },
     room: {
-        type: String,
+        type: Number,
         required: true
     }
 },
