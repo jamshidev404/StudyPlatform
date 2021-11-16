@@ -7,11 +7,10 @@ exports.create = async (req, res) => {
         login: req.body.login,
         role: req.body.role,
         password: req.body.password,
-        status: req.body.status
     });
 
     await user.save()
-        .then(() => {
+        .then(async () => {
             let pupil = new Pupil({
                 name: req.body.name,
                 address: req.body.address,
@@ -20,6 +19,12 @@ exports.create = async (req, res) => {
                 phone: req.body.phone,
                 isPayed: req.body.isPayed
             })
+
+            await pupil.save()
+
+
+            console.log("pupil->", pupil)
+
             return res.status(200).json({ success: true, data: pupil })
         })
         .catch((err) => {
