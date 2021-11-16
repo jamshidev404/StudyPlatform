@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema({
     group_id: {
         type: mongoose.Schema.ObjectId,
-        ref: "GroupsModel",
+        ref: "Group",
         required: true,
         index: true
     },
     user_id: {
         type: mongoose.Schema.ObjectId,
-        ref: "UserModel",
+        ref: "User",
         required: true,
         index: true
     }

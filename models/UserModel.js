@@ -8,7 +8,7 @@ const schema = mongoose.Schema(
             trim: true
         },
         role: {
-            type: String,
+            type: String, 
             enum: [
                 "superadmin", "admin", "parent",
                 "moderator", "teacher", "user"],
