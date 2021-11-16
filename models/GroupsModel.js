@@ -58,7 +58,7 @@ const schema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "User",
         index: true,
-        required: true
+        //required: true
     }
 },
     { timestamps: true }

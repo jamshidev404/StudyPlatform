@@ -17,11 +17,11 @@ exports.getAll = async (req, res, next) => {
     const count = await Teacher.countDocuments()
     await Teacher.find()
         .sort({ createdAt: -1 })
-        //.populate({ path: "group_id"})
+        .populate({ path: "group_id"})
         .skip((page - 1) * limit)
         .limit(limit * 1)
         .exec((err, data) => {
-            if (err) return res.status(404).json({ success: false, err });
+            if (err) return res.status(404).json({ success: false, err })
             return res.status(200).json({ success: true, data, count })
         });
 };
