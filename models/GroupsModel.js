@@ -66,6 +66,12 @@ const schema = mongoose.Schema({
         ref: "Teacher",
         index: true,
         //required: true
+    },
+    science_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Science",
+        index: true,
+        //required: true
     }
 },
     { timestamps: true }
