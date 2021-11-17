@@ -38,7 +38,7 @@ exports.getAll = async (req, res, next) => {
     await Pupil.find()
         .sort({ createdAt: -1 })
         .populate({ path: "user_id" })
-        .populate({ path: "group_id" })
+        .populate({ path: "group_id", select: "name" })
         .skip((page - 1) * limit)
         .limit(limit * 1)
 
