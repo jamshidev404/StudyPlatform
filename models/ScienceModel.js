@@ -10,6 +10,8 @@ const schema = mongoose.Schema({
         //required: true,
         ref: "Group"
     }
-});
+},
+ { timestamp: true }
+);
 
 module.exports = mongoose.model("Science", schema);
