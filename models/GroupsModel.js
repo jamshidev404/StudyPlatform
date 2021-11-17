@@ -60,6 +60,12 @@ const schema = mongoose.Schema({
         ref: "User",
         index: true,
         //required: true
+    },
+    teacher_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Teacher",
+        index: true,
+        //required: true
     }
 },
     { timestamps: true }

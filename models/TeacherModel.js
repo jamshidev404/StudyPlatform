@@ -24,7 +24,7 @@ const schema = mongoose.Schema({
     role: {
         type: String,
         required: true,
-        
+        default: "teacher"
     }
 },
     { timestamps: true }
