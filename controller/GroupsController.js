@@ -41,6 +41,15 @@ exports.getOne = async (req, res, next) => {
     });
 };
 
+exports.getGroup = async (req, res, next) => {
+    await Group.findOne({ _id: req.params.id });
+
+    exec((err, data) => {
+        if (err) return res.status(404).json({ success: false, err });
+        return res.status(200).json({ success: true, data: data })
+    });
+}
+
 exports.updateOne = async (req, res, next) => {
     await Group.updateOne(
         { _id: req.params.id },
