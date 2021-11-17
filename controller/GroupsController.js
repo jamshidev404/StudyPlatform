@@ -39,7 +39,7 @@ exports.getOne = async (req, res, next) => {
         //const count = await Group.countDocuments()
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, group, pupils: pupil })
+            return res.status(200).json({ success: true, group, pupils: pupil, data })
         });
 };
 
