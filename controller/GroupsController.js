@@ -33,11 +33,11 @@ exports.getOne = async (req, res, next) => {
     let group = await Group.findById({ _id: req.params.id });
 
     await Pupil.find({ group_id: req.params.id }).populate("user_id")
-    await Teacher.find({ group_id: req.params.id }).populate("teacher_id")
+    //await Teacher.find({ group_id: req.params.id }).populate("teacher_id")
     //const count = await Group.countDocuments()
     .exec((err, data) => {
         if (err) return res.status(404).json({ success: false, err });
-        return res.status(200).json({ success: true, group, pupils: data, count })
+        return res.status(200).json({ success: true, group, pupils: data })
     });
 };
 
