@@ -5,7 +5,7 @@ const Group = require("../controller/GroupsController");
 router.post("/add", Group.create),
 router.get("/all", Group.getAll),
 router.get("/:id", Group.getOne),
-router.get("/:id", Group.getGroup),
+router.get("/group/:id", Group.getGroup),
 router.put("/:id", Group.updateOne),
 router.delete("/:id", Group.rm);
 
