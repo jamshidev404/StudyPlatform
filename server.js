@@ -23,15 +23,16 @@ app.use(
 );
 
 // Routes
-app.use("/api/user", require("./routes/UserRouter"));
+app.use("/api/user",   require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
-app.use("/api/qabul", require("./routes/Acceptance"));
-app.use("/api/exam", require("./routes/ExamRouter"));
+app.use("/api/qabul",  require("./routes/Acceptance"));
+app.use("/api/exam",   require("./routes/ExamRouter"));
 app.use("/api/center", require("./routes/CenterRouter"));
-app.use("/api/group", require("./routes/GroupRouter"));
-app.use("/api/pupil", require("./routes/PupilRouter"));
-app.use("/api/teacher", require("./routes/TeacherRouter"));
-app.use("/api/science", require("./routes/ScienceRouter"));
+app.use("/api/group",  require("./routes/GroupRouter"));
+app.use("/api/pupil",  require("./routes/PupilRouter"));
+app.use("/api/teacher",require("./routes/TeacherRouter"));
+app.use("/api/science",require("./routes/ScienceRouter"));
+app.use("/api/pay",    require("./routes/PayRouter"));
 
 
 // Connect to DataBase

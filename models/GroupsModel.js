@@ -61,18 +61,18 @@ const schema = mongoose.Schema({
         index: true,
         //required: true
     },
-    teacher_id: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Teacher",
-        index: true,
-        //required: true
-    },
-    science_id: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Science",
-        index: true,
-        //required: true
-    }
+    // teacher_id: {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "Teacher",
+    //     index: true,
+    //     //required: true
+    // },
+    // science_id: {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "Science",
+    //     index: true,
+    //     //required: true
+    // }
 },
     { timestamps: true }
 );

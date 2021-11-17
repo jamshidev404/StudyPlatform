@@ -5,6 +5,7 @@ const Pupil = require("../controller/PupilController");
 router.post("/add", Pupil.create),
 router.get("/all", Pupil.getAll),
 router.get("/:id", Pupil.getOne),
+router.get("/pay/:id", Pupil.getPay),
 router.put("/:id", Pupil.updateOne),
 router.delete("/:id", Pupil.rm);
 
