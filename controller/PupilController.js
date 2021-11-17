@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
-    const count = await Pupil.countDocuments()
+    //const count = await Pupil.countDocuments()
     await Pupil.find()
         .sort({ createdAt: -1 })
         .populate({ path: "user_id" })
@@ -44,7 +44,7 @@ exports.getAll = async (req, res, next) => {
 
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
-            return res.status(200).json({ success: true, data, count })
+            return res.status(200).json({ success: true, data })
         });
 };
 

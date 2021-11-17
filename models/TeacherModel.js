@@ -21,19 +21,22 @@ const schema = mongoose.Schema({
     },
     science: {
         type: String,
-        //required: true
+        required: true
     },
     gender: {
         type: String,
         required: true
     },
+    groups: {
+        type: Array
+    },
     experience:{
         type: String,
-        //required: true
+        required: true
     },
     role: {
         type: String,
-        //required: true,
+        required: true,
         default: "teacher"
     }
 },
