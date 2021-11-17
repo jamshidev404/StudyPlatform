@@ -28,7 +28,28 @@ const schema = mongoose.Schema({
     address: {
         type: String,
         require: true
-    }
+    },
+    date: {
+        type: String,
+        require: true
+    },
+    login: {
+        type: String,
+        require: true
+    },
+    password: {
+        type: String,
+        require: true
+    },
+    gender: {
+        type: String,
+        require: true
+    },
+    role: {
+        type: String,
+        default: "pupil"
+    },
+    
 },
     { timestamps: true }
 );
