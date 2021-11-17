@@ -13,6 +13,12 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
+    group_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Group",
+        index: true,
+        required: true
+    },
     science: {
         type: String,
         //required: true
