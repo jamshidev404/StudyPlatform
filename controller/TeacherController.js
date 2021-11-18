@@ -29,20 +29,15 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-
+console.log(req.body)
     let teacher = await Teacher.findById({ _id: req.params.id }).populate("sciences");
     
     await Group.find({ teacher_id: req.params.id })
-    .populate("group_id")
+    //.populate("group_id")
     .exec((err, data) => {
         if (err) return res.status(404).json({ success: false, err });
-        return res.status(200).json({ success: true, teacher, groups: data })
+        return res.status(200).json({ success: true, teacher, data: data })
     });
-
-
-
-
-
 };
 
 exports.getOneTeacher = async (req, res, next) => {
