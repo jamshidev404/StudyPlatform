@@ -34,12 +34,12 @@ exports.getOne = async (req, res, next) => {
     let group = await Group.findById({ _id: req.params.id });
 
     const pupil = await Pupil.find({ group_id: req.params.id }).populate("user_id")
-    // const teacher = await Teacher.find({ teacher_id: req.params.id }).populate("teacher_id")
-    // const science = await Science.find({ science_id: req.params.id })
-        //const count = await Group.countDocuments()
+    const teacher = await Group.find({ teacher_id: req.params.id }).populate({ path: "teacher_id", select: "name" })
+    const science = await Teacher.find({ science_id: req.params.id }).populate("science_id")
+    const count = await Group.countDocuments()
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, group, pupils: pupil })
+            return res.status(200).json({ success: true, group, science, teacher, count, pupils: pupil })
         });
 };
 

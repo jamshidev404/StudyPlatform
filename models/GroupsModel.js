@@ -18,10 +18,6 @@ const schema = mongoose.Schema({
         type: [String],
         required: true
     },
-    date: {
-        type: [String],
-        required: true
-    },
     days: {
         type: Array,
         required: true
@@ -61,18 +57,18 @@ const schema = mongoose.Schema({
         index: true,
         //required: true
     },
-    // teacher_id: {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "Teacher",
-    //     index: true,
-    //     //required: true
-    // },
-    // science_id: {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "Science",
-    //     index: true,
-    //     //required: true
-    // }
+    teacher_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Teacher",
+        index: true,
+        required: true
+    },
+    science_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Science",
+        index: true,
+        required: true
+    }
 },
     { timestamps: true }
 );

@@ -28,37 +28,37 @@ const schema = mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    // phone: {
-    //     type: String,
-    // },
-    // experience: {
-    //     type: String,
-    // },
-    // eduType: {
-    //     type: String,
-    //     enum: ["online", "offline"],
-    //     default: "offline"
-    // },
-    // science: {
-    //     type: String
-    // },
-    // group: {
-    //     type: String
-    // },
-    // image: {
-    //     type: String
-    // },
-    // gender: {
-    //     type: String
-    // },
-    // date: {
-    //     type: String,
-    //     //required: true
-    // },
-    // address: {
-    //     type: String,
-    //     //required: true
-    // }
+    phone: {
+        type: String,
+    },
+    experience: {
+        type: String,
+    },
+    eduType: {
+        type: String,
+        enum: ["online", "offline"],
+        default: "offline"
+    },
+    science: {
+        type: String
+    },
+    group: {
+        type: String
+    },
+    image: {
+        type: String
+    },
+    gender: {
+        type: String
+    },
+    date: {
+        type: String,
+        //required: true
+    },
+    address: {
+        type: String,
+        //required: true
+    }
 
 },
     { timestamps: true }

@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
-    const count = await Science.countDocuments()
+    const count = await Group.countDocuments()
     await Science.find()
         .skip((page - 1) * limit)
         .limit(limit * 1)
@@ -28,9 +28,13 @@ exports.getAll = async (req, res, next) => {
 
 exports.getOne = async (req, res, next) => {
     await Science.findOne({ _id: req.params.id })
+    
+    // const group = await Group.find({ science_id: req.params.id })
+    // .populate({ path: "science_id", select: "name" })
+
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, data: data })
+            return res.status(200).json({ success: true, data })
         });
 };
 

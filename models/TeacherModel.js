@@ -19,8 +19,14 @@ const schema = mongoose.Schema({
         index: true,
         required: true
     },
-    science: {
-        type: String,
+    science_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Science",
+        index: true,
+        required: true
+    },
+    sciences: {
+        type: Array,
         required: true
     },
     gender: {

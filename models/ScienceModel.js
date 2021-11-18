@@ -7,10 +7,12 @@ const schema = mongoose.Schema({
     },
     group_id: {
         type: mongoose.Schema.ObjectId,
-        //required: true,
+        required: true,
         ref: "Group"
-    }
+    },
+    
 },
+
  { timestamp: true }
 );
 

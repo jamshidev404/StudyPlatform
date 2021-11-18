@@ -1,4 +1,5 @@
 const Teacher = require("../models/TeacherModel");
+const Science = require("../models/ScienceModel");
 
 exports.create = async (req, res) => {
     let result = new Teacher(req.body);
@@ -13,17 +14,18 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-    console.log(req.body);
+   // console.log(req.body);
     const { page = 1, limit = 10 } = req.query
+    const science = await Science.find().populate("science_id") 
     const count = await Teacher.countDocuments()
     await Teacher.find()
-        .sort({ createdAt: -1 })
         .populate("group_id")
+        .sort({ createdAt: -1 })
         .skip((page - 1) * limit)
         .limit(limit * 1)
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err })
-            return res.status(200).json({ success: true, data: data, count })
+            return res.status(200).json({ success: true, science, data: data, count })
         });
 };
 
