@@ -19,6 +19,12 @@ const schema = mongoose.Schema({
         index: true,
         required: true
     }],
+    group_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Science",
+        index: true,
+        //required: true
+    },
     gender: {
         type: Number,
         enum: [1, 2],
