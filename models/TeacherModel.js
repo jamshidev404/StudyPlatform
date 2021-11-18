@@ -19,16 +19,13 @@ const schema = mongoose.Schema({
         index: true,
         required: true
     },
-    science_id: {
+
+    sciences: [{
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
         required: true
-    },
-    sciences: {
-        type: Array,
-        required: true
-    },
+    }],
     gender: {
         type: String,
         required: true
@@ -36,7 +33,7 @@ const schema = mongoose.Schema({
     groups: {
         type: Array
     },
-    experience:{
+    experience: {
         type: String,
         required: true
     },
