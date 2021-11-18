@@ -19,7 +19,6 @@ exports.getAll = async (req, res, next) => {
     //const science = await Science.find().populate("science_id") 
     const count = await Teacher.countDocuments()
     await Teacher.find()
-        .populate("group_id")
         .sort({ createdAt: -1 })
         .skip((page - 1) * limit)
         .limit(limit * 1)
@@ -32,8 +31,10 @@ exports.getAll = async (req, res, next) => {
 exports.getOne = async (req, res, next) => {
 
     let teacher = await Teacher.findById({ _id: req.params.id }).populate("sciences");
-
-    await Group.find({ teacher_id: req.params.id }).exec((err, data) => {
+    
+    await Group.find({ teacher_id: req.params.id })
+    .populate("group_id")
+    .exec((err, data) => {
         if (err) return res.status(404).json({ success: false, err });
         return res.status(200).json({ success: true, teacher, groups: data })
     });
