@@ -1,5 +1,6 @@
 const Teacher = require("../models/TeacherModel");
 const Science = require("../models/ScienceModel");
+const Group = require("../models/GroupsModel");
 
 exports.create = async (req, res) => {
     let result = new Teacher(req.body);
@@ -14,7 +15,6 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-   // console.log(req.body);
     const { page = 1, limit = 10 } = req.query
     //const science = await Science.find().populate("science_id") 
     const count = await Teacher.countDocuments()
@@ -25,17 +25,32 @@ exports.getAll = async (req, res, next) => {
         .limit(limit * 1)
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err })
-            return res.status(200).json({ success: true,  data: data, count })
+            return res.status(200).json({ success: true, data: data, count })
         });
 };
 
 exports.getOne = async (req, res, next) => {
     await Teacher.findOne({ _id: req.params.id })
+
+    await Group.find({ science_id: req.params.id })
+        .select({ name: 1, science_id: 1 })
+        .populate({ path: "science_id", select: "name" })
+
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data: data })
         });
 };
+
+exports.getOneTeacher = async (req, res, next) => {
+    await Teacher.findOne({ _id: req.params.id })
+
+        .exec((err, data) => {
+            if (err) return res.status(404).json({ success: false, err });
+            return res.status(200).json({ success: true, data: data })
+        });
+};
+
 
 exports.updateOne = async (req, res, next) => {
     await Teacher.updateOne(
