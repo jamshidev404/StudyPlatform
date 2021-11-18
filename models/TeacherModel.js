@@ -36,7 +36,7 @@ const schema = mongoose.Schema({
     },
     experience: {
         type: String,
-        required: true
+        //required: true
     },
     role: {
         type: String,
