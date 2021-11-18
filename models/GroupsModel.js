@@ -5,11 +5,6 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-
-    science: {
-        type: String,
-        required: true
-    },
     startTime: {
         type: String,
         required: true
@@ -20,10 +15,6 @@ const schema = mongoose.Schema({
     },
     days: {
         type: Array,
-        required: true
-    },
-    teacher: {
-        type: String,
         required: true
     },
     room: {
@@ -49,7 +40,7 @@ const schema = mongoose.Schema({
     },
     maxpupil: {
         type: String,
-        //required: true
+        required: true
     },
     user_id: {
         type: mongoose.Schema.ObjectId,
