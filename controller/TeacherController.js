@@ -31,7 +31,7 @@ exports.getAll = async (req, res, next) => {
 
 exports.getOne = async (req, res, next) => {
 
-     await Group.find({ teacher_id: req.params.id }).select({ name: 1, teacher_id: 1 }).populate({ path: "science_id", select: "name" })
+     await Group.find({ teacher_id: req.params.id }).select({ name: 1, teacher_id: 1 }).populate({ path: "teacher_id", select: "name" })
 
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });

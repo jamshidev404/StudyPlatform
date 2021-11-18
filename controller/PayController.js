@@ -1,5 +1,6 @@
+const GroupsModel = require("../models/GroupsModel");
 const Pay = require("../models/PayModel");
-// const Pupil = require("../models/PupilModel1");
+// const Pupil = require("../models/PupilModel");
 // const Group = require("../models/GroupsModel")
 
 exports.create = async (req, res) => {
@@ -29,6 +30,7 @@ exports.getAll = async (req, res, next) => {
 
 exports.getOne = async (req, res, next) => {
     await Pay.findOne({ _id: req.params.id })
+    await GroupsModel.find({ group_id: req.params.id }).populate({ path: "group_id", select: "name" })
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data: data })

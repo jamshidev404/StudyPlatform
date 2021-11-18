@@ -21,13 +21,13 @@ const schema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Group",
         index: true,
-        //required: true
+        required: true
     },
     pupil_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Pupil",
         index: true,
-        //required: true
+        required: true
     }
 },
     { timestamp: true }
