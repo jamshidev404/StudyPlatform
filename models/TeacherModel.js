@@ -27,7 +27,8 @@ const schema = mongoose.Schema({
         required: true
     }],
     gender: {
-        type: String,
+        type: Number,
+        enum: [1, 2],
         required: true
     },
     groups: {
