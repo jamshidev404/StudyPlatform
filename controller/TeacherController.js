@@ -30,8 +30,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-    await Teacher.findOne({ _id: req.params.id })
-
+    
     await Group.find({ science_id: req.params.id })
         .select({ name: 1, science_id: 1 })
         .populate({ path: "science_id", select: "name" })
