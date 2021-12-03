@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.create = async (req, res, next) => {
-    console.log(req.body)
     const salt = await bcrypt.genSaltSync(12);
     const password = await bcrypt.hashSync(req.body.password, salt);
 
