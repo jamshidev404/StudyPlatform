@@ -1,67 +1,71 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const schema = mongoose.Schema({
-
+const schema = mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true,
     },
     role: {
-        type: String,
-        enum: [
-            "superadmin", "admin", "parent",
-            "moderator", "teacher", "user",
-            "pupil" ],
-        required: true
+      type: String,
+      enum: [
+        "superadmin",
+        "admin",
+        "parents",
+        "moderator",
+        "teacher",
+        "user",
+        "pupil",
+      ],
+      required: true,
     },
     login: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     status: {
-        type: Boolean,
-        default: true,
+      type: Boolean,
+      default: true,
     },
     phone: {
-        type: String,
+      type: String,
     },
     experience: {
-        type: String,
+      type: String,
     },
     eduType: {
-        type: String,
-        enum: ["online", "offline"],
-        default: "offline"
+      type: String,
+      enum: ["online", "offline"],
+      default: "offline",
     },
     science: {
-        type: String
+      type: String,
     },
     group: {
-        type: String
+      type: String,
     },
     image: {
-        type: String
+      type: String,
     },
     gender: {
-        type: String
+      type: String,
     },
     date: {
-        type: String,
-        //required: true
+      type: String,
+      //required: true
     },
     address: {
-        type: String,
-        //required: true
-    }
-
-},
-    { timestamps: true }
+      type: String,
+      //required: true
+    },
+  },
+  { timestamps: true }
 );
 
-module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model("User", schema);

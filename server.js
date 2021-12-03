@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-require("dotenv").config();
+//require("dotenv").config();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const compression = require("compression");
@@ -45,7 +45,7 @@ mongoose.connect(mongoDB, {
   //useFindAndModify: false,
   //useCreateIndex: true
 }).then(() => {
-  console.log("Connect successful");
+  console.log("DB connect successfully");
 }).catch((err) => {
   console.log("no connection", err);
 });
