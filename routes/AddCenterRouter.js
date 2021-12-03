@@ -1,11 +1,11 @@
 const express  = require("express");
 const router = express.Router();
-const Center = require("../controller/CenterController");
+const Center = require("../controller/AddCenterController");
 
 router.post("/add", Center.create),
+router.get("/all", Center.getAll),
+router.get("/:id", Center.getOne),
 router.put("/:id", Center.updateOne),
-// router.get("/all", Center.getAll),
-// router.get("/:id", Center.me),
-// router.delete("/:id", Center.rm);
+router.delete("/:id", Center.rm);
 
 module.exports = router;

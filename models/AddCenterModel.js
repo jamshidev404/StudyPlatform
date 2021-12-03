@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
-    centerName: {
+    centername: {
         type: String,
         required: true
     },
-    image: {
+    login: {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -17,14 +21,31 @@ const schema = mongoose.Schema({
             type: Number,
             required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     address: {
         type: String,
         required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    INN: {
+        type: Number,
+        required: true
+    },
+    license: {
+        type: String,
+        required: true
+    },
+    givenlicensedate: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: Boolean,
+        default: false
     }
+
 },
     { timestaps: true }
 );

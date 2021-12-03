@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    name: {
+    namegroup: {
         type: String,
         required: true
     },
@@ -18,13 +18,18 @@ const schema = mongoose.Schema({
         required: true
     },
     room: {
-        type: String,
+        type: Number,
         required: true
     },
     edutype: {
         type: String,
         enum: ["online", "offline"],
         default: "offline"
+    },
+    status: {
+        type: Boolean,
+        default: false,
+        required: true
     },
     price: {
         type: String,
@@ -39,7 +44,7 @@ const schema = mongoose.Schema({
         required: true
     },
     maxpupil: {
-        type: String,
+        type: Number,
         required: true
     },
     user_id: {
@@ -52,13 +57,13 @@ const schema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Teacher",
         index: true,
-        required: true
+        //required: true
     },
     science_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
-        required: true
+        //required: true
     }
 },
     { timestamps: true }
