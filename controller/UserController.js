@@ -37,7 +37,7 @@ exports.login = async (req, res, next) => {
             //console.log(token)
             return res.status(200).json({ success: true, token })
         });
-};
+}
 
 exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
@@ -52,7 +52,7 @@ exports.getAll = async (req, res, next) => {
         });
 };
 
-exports.me = async (req, res, next) => {
+exports.me = async (req, res, next) => {    
     const token = req.headers.authorization.split(" ")[1];
     const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
     console.log(token, user)
