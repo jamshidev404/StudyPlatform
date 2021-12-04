@@ -10,7 +10,7 @@ const schema = mongoose.Schema({
         required: true
     },
     endTime: {
-        type: [String],
+        type: String,
         required: true
     },
     days: {
@@ -27,9 +27,10 @@ const schema = mongoose.Schema({
         default: "offline"
     },
     status: {
-        type: Boolean,
-        default: false,
-        required: true
+        type: String,
+        enum: [ "arxiv", "active",
+                "unactive" ],
+        default: "unactive",
     },
     price: {
         type: String,

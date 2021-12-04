@@ -16,13 +16,26 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-    const { page = 1, limit = 10 } = req.query
+    const { page, limit } = req.query
     const count = await Group.countDocuments();
-    await Group.find()
+    await Group.find()//.filter()
         .sort({ createdAt: -1 })
         .populate({ path: "user_id" })
         .skip((page - 1) * limit)
         .limit(limit * 1)
+        .exec((err, data) => {
+            if (err) return res.status(400).json({ success: false, err });
+            return res.status(200).json({ success: true, data, count })
+        });
+};
+
+exports.getStatusByAll = async (req, res, next) => {
+    const { page, limit, status } = req.query
+    const count = await Group.countDocuments();
+    await Group.find({status: status})
+        .sort({createdAt: -1})
+        .skip((page -1 )*limit)
+        .limit(parseInt(limit))
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
             return res.status(200).json({ success: true, data, count })
@@ -54,11 +67,13 @@ exports.getGroup = async (req, res, next) => {
 
 exports.getStatus = async (req, res, next) => {
     await Group.findOne({ _id: req.params.id })
-     Group.find().select({ name: 1, status: 1 })
+    const arxiv = Group.find().select({ name: 1, status: "arxiv" })
+    const active = Group.find().select({ name: 1, status: "active" })
+    const unactive = Group.find().select({ name: 1, status: "unactive" })
 
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, data: data })
+            return res.status(200).json({ success: true, arxiv: arxiv, active: active, unactive: unactive, data: data })
         });
 }
 
