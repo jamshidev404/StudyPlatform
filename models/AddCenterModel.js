@@ -18,8 +18,8 @@ const schema = mongoose.Schema({
         required: true
     },
     phone: {
-            type: Number,
-            required: true
+         type: Number,
+         required: true
     },
     address: {
         type: String,

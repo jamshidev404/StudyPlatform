@@ -8,7 +8,6 @@ exports.create = async (req, res) => {
             return res.status(200).json({ success: true, data: result });
         })
         .catch((err) => {
-            //console.log(err)
             return res.status(400).json({ success: false, err });
         })
 };

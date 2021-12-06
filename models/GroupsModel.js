@@ -33,7 +33,7 @@ const schema = mongoose.Schema({
         default: "unactive",
     },
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     length: {

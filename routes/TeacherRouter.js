@@ -3,6 +3,7 @@ const router = express.Router();
 const Teacher = require("../controller/TeacherController");
 
 router.post("/add", Teacher.create),
+router.post('/login', Teacher.login),
 router.get("/all", Teacher.getAll),
 router.get("/:id", Teacher.getOne),
 router.get("/get/:id", Teacher.getOneTeacher),

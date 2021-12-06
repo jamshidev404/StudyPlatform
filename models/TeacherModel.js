@@ -41,6 +41,10 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
         default: "teacher"
+    },
+    phone: {
+        type: Number,
+        required: true
     }
 },
     { timestamps: true }
