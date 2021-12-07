@@ -12,7 +12,8 @@ const schema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        message: "Password must be only string"
     },
     gender: {
         type: Number,
