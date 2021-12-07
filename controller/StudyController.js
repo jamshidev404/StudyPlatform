@@ -1,11 +1,11 @@
-const Center = require("../models/CenterModel");
+const Center = require("../models/StudyModel");
 const Director = require('../models/DirectorModel');
 
 
-exports.create = async (req, res) => {
+exports.create = (req, res) => {
     let result = new Center(req.body);
   
-    await result
+     result
       .save()
       .then(() => {
         return res.status(200).json({ success: true, data: result });

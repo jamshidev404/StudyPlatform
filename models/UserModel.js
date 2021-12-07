@@ -47,7 +47,7 @@ const schema = mongoose.Schema(
     center_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Center",
-      required: true
+      //required: true
     },
     science: {
       type: String,

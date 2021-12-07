@@ -46,3 +46,15 @@ const schema = mongoose.Schema({
 );
 
 module.exports = mongoose.model("Director", schema);
+
+// "centername": "Teach Me",
+// "login": "teachme",
+// "password": "123",
+// "director": "Ayitboyev Xushnud",
+// "phone": "998911355686",
+// "address": "Urganch viloyati Gastronom",
+// "INN": 45521335,
+// "email": "teachme@gmail.com",
+// "contractdate": "25.12.2021",
+// "contract": 1001,
+// "paybefore": 300000
