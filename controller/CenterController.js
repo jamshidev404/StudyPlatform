@@ -2,19 +2,18 @@ const Center = require("../models/CenterModel");
 const Director = require('../models/DirectorModel');
 
 
-exports.create = (req, res) => {
-    console.log(req.body)
-    let center = new Center(req.body);
-    
-    center.save()
-        .then(() => {
-            return res.status(200).json({ success: true, data: center });
-        })
-        .catch((err) => {
-            console.log(err);
-            return res.status(400).json({ success: false, err });
-        })
-};
+exports.create = async (req, res) => {
+    let result = new Center(req.body);
+  
+    await result
+      .save()
+      .then(() => {
+        return res.status(200).json({ success: true, data: result });
+      })
+      .catch((err) => {
+        return res.status(400).json({ success: false, err });
+      });
+  };
 
 exports.updateOne = async (req, res, next) => {
     await Center.updateOne(
