@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
-    centername: {
+    name: {
         type: String,
         required: true
     },
@@ -13,7 +13,7 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    director: {
+    gender: {
         type: String,
         required: true
     },
@@ -23,37 +23,23 @@ const schema = mongoose.Schema({
     },
     address: {
         type: String,
-        required: true
-    },
-    email: {
-        type: String,
-    },
-    INN: {
-        type: Number,
-        required: true
-    },
-    contract: {
-        type: Number,
-        required: true
-    },
-    contractdate: {
-        type: String,
-        required: true
-    },
-    status: {
-        type: Boolean,
-        default: false
+         required: true
     },
     role: {
         type: String,
         default: "admin"
     },
-    paybefore: {
-        type: Number
+    birthday: {
+        type: String,
+         required: true
+    },
+    center_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Center",
+        required: true
     }
-
 },
     { timestaps: true }
 );
 
-module.exports = mongoose.model("Center", schema);
+module.exports = mongoose.model("Director", schema);

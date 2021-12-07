@@ -1,5 +1,5 @@
 const Qabulxona = require("../models/Acceptance");
-const Center = require('../models/AddCenterModel')
+const Center = require('../models/CenterModel')
 
 exports.create = async (req, res) => {
     let result = new Qabulxona(req.body);

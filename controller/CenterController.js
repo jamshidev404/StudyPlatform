@@ -1,11 +1,11 @@
-const Center = require("../models/AddCenterModel");
+const Center = require("../models/CenterModel");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.create = (req, res) => {
     const salt = bcrypt.genSaltSync(12);
     const password = bcrypt.hashSync(req.body.password, salt);
-    
+
     let center = new Center(req.body);
     center.password = password
     center.save()
@@ -58,7 +58,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-    await Center.findOne(req.params.id)
+    await Center.findOne({ _id: req.params.id })
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err });
             return res.status(200).json({ success: true, data })

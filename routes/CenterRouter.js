@@ -1,6 +1,6 @@
 const express  = require("express");
 const router = express.Router();
-const Center = require("../controller/AddCenterController");
+const Center = require("../controller/CenterController");
 
 router.post("/add", Center.create),
 router.post("/login", Center.login),

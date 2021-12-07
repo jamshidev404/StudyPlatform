@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
         name: req.body.name,
         login: req.body.login,
         role: req.body.role,
-        password: req.body.password,
+        password: req.body.password
     });
 
     await user.save()
