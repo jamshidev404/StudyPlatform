@@ -13,10 +13,6 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    director: {
-        type: String,
-        required: true
-    },
     phone: {
          type: String,
          required: true
@@ -47,6 +43,10 @@ const schema = mongoose.Schema({
     role: {
         type: String,
         default: "admin"
+    },
+    director_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Director"
     },
     paybefore: {
         type: Number
