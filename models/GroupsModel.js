@@ -60,6 +60,11 @@ const schema = mongoose.Schema({
         index: true,
         //required: true
     },
+    center_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Center",
+        required: true
+    },
     science_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Science",

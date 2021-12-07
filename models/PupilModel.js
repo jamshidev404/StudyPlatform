@@ -45,6 +45,11 @@ const schema = mongoose.Schema({
         type: String,
         require: true
     },
+    center_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Center",
+        required: true
+    },
     role: {
         type: String,
         default: "pupil"

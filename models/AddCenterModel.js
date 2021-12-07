@@ -27,23 +27,29 @@ const schema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
     },
     INN: {
         type: Number,
         required: true
     },
-    license: {
+    contract: {
         type: String,
         required: true
     },
-    givenlicensedate: {
+    contractdate: {
         type: String,
         required: true
     },
     status: {
         type: Boolean,
         default: false
+    },
+    role: {
+        type: String,
+        default: "admin"
+    },
+    paybefore: {
+        type: String
     }
 
 },

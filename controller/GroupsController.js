@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res, next) => {
   const { page, limit } = req.query;
   const count = await Group.countDocuments();
-  await Group.find() //.filter()
+  await Group.find() 
     .sort({ createdAt: -1 })
     .populate({ path: "user_id" })
     .skip((page - 1) * limit)

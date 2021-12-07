@@ -13,17 +13,22 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    sciences: [{
+    science_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
         required: true
-    }],
+    },
     group_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
         //required: true
+    },
+    center_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Center",
+        required: true
     },
     gender: {
         type: Number,
@@ -39,7 +44,6 @@ const schema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: true,
         default: "teacher"
     },
     phone: {

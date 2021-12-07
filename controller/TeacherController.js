@@ -5,13 +5,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
 exports.create = async (req, res) => {
+    console.log(req.body);
     const salt = await bcrypt.genSaltSync(12);
     const password = await bcrypt.hashSync(req.body.password, salt)
-    let result = new Teacher(req.body);
 
-    await result.save()
+    let teacher = new Teacher(req.body);
+    teacher.password = password;
+    teacher.save()
         .then(() => {
-            return res.status(200).json({ success: true, data: result });
+            return res.status(200).json({ success: true, data: teacher });
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });
@@ -34,21 +36,24 @@ exports.login = async (req, res, next) => {
         const payload = { id: data._id }
 
         const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: process.env.TOKEN_EXPIRES_IN })
-        return erres.status(200).json({ success: true, token })
+        return res.status(200).json({ success: true, token })
     })
 }
 
 exports.getAll = async (req, res, next) => {
-    const { page = 1, limit = 10 } = req.query
-    const science = await Science.find().populate("science_id") 
+    console.log(req.body)
+     const { page, limit } = req.query
+    // const science = await Science.find({ science_id: req.params.id })
+    // .select({ name: 1, science_id: 1 })
+    // .populate({ path: "science_id", select: "name" });
     const count = await Teacher.countDocuments()
-    await Teacher.find()
+    await Teacher.find({ science_id: req.params.id }).select({ name: 1, science_id: 1 })//.populate({ path: "science_id", select: "name" })
         .sort({ createdAt: -1 })
         .skip((page - 1) * limit)
         .limit(limit * 1)
         .exec((err, data) => {
             if (err) return res.status(404).json({ success: false, err })
-            return res.status(200).json({ success: true, data: data, count })
+            return res.status(200).json({ success: true, science, data, count })
         });
 };
 

@@ -44,6 +44,11 @@ const schema = mongoose.Schema(
       enum: ["online", "offline"],
       default: "offline",
     },
+    center_id: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Center",
+      required: true
+    },
     science: {
       type: String,
     },

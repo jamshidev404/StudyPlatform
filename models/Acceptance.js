@@ -9,6 +9,11 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
     },
+    center_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Center",
+        required: true
+    },
     freeTime: {
         type: String,
         required: true,

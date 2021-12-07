@@ -34,7 +34,7 @@ app.use("/api/teacher",require("./routes/TeacherRouter"));
 app.use("/api/science",require("./routes/ScienceRouter"));
 app.use("/api/pay",    require("./routes/PayRouter"));
 
-
+                                                        
 // Connect to DataBase
 const port = process.env.PORT || 7000;
 const mongoDB = "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority"

@@ -10,6 +10,11 @@ const schema = mongoose.Schema({
         //required: true,
         ref: "Group"
     },
+    center_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Center",
+        required: true
+    }
     
 },
 
