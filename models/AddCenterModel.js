@@ -33,7 +33,7 @@ const schema = mongoose.Schema({
         required: true
     },
     contract: {
-        type: String,
+        type: Number,
         required: true
     },
     contractdate: {
@@ -49,7 +49,7 @@ const schema = mongoose.Schema({
         default: "admin"
     },
     paybefore: {
-        type: String
+        type: Number
     }
 
 },

@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken');
 exports.create = (req, res) => {
     const salt = bcrypt.genSaltSync(12);
     const password = bcrypt.hashSync(req.body.password, salt);
+    
     let center = new Center(req.body);
-
-    center.save()
     center.password = password
+    center.save()
         .then(() => {
             return res.status(200).json({ success: true, data: center });
         })
