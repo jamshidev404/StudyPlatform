@@ -7,13 +7,11 @@ exports.create = (req, res) => {
     const salt = bcrypt.genSaltSync(12);
     const password = bcrypt.hashSync(req.body.password, salt)
 
-
-
     let director = new Director(req.body);
     director.password = password
     director.save()
     .then(() => {
-        return res.status(200).json({ success: true, data: teacher });
+        return res.status(200).json({ success: true, data: director });
     })
     .catch((err) => {
         return res.status(400).json({ success: false, err });
@@ -46,8 +44,6 @@ exports.getAll = async (req, res, next) => {
     const count = await Director.countDocuments()
     await Director.find()
         .sort({ createdAt: -1 })
-        .populate({ path: "user_id" })
-        .populate({ path: "center_id", select: "name" })
         .skip((page - 1) * limit)
         .limit(limit * 1)
 
