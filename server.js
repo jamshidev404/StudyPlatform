@@ -34,6 +34,7 @@ app.use("/api/teacher",require("./routes/TeacherRouter"));
 app.use("/api/science",require("./routes/ScienceRouter"));
 app.use("/api/pay",    require("./routes/PayRouter"));
 app.use("/api/director",require("./routes/DirectorRouter"));
+app.use("/api/markaz",require("./routes/Markazim"));
 
                                                         
 // Connect to DataBase
