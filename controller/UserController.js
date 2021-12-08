@@ -27,15 +27,11 @@ exports.create = async (req, res, next) => {
             return res.status(200).json({ success: true, data: user });
             }
             if(user.role == "pupil"){
-                const pupil = new pupil(req.body)
+                const pupil = new Pupil(req.body)
 
             pupil.save()
             return res.status(200).json({ success: true, data: user });
             }
-
-            
-
-            
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });
