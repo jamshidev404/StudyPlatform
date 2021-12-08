@@ -2,16 +2,40 @@ const { promisify } = require("util")
 const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Director = require('../models/DirectorModel')
+const Pupil = require('../models/PupilModel')
 
 exports.create = async (req, res, next) => {
     const salt = await bcrypt.genSaltSync(12);
     const password = await bcrypt.hashSync(req.body.password, salt);
 
-    let user = new User(req.body);
+    let user = new User({
+        user: { name: req.body.name },
+        role: { role: req.body.role },
+        login: { login: req.body.login },
+        password: { password: req.body.password },
+
+    });
     user.password = password;
     user.save()
         .then(() => {
+
+            if(user.role == "admin"){
+                const director = new Director(req.body)
+
+            director.save()
             return res.status(200).json({ success: true, data: user });
+            }
+            if(user.role == "pupil"){
+                const pupil = new pupil(req.body)
+
+            pupil.save()
+            return res.status(200).json({ success: true, data: user });
+            }
+
+            
+
+            
         })
         .catch((err) => {
             return res.status(400).json({ success: false, err });
