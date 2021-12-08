@@ -13,6 +13,15 @@ exports.adding = (req, res) => {
     })
 };
 
+exports.getAll = async (req, res, next) => {
+    await Center.find()
+        .sort({ createdAt: -1 })
+        .exec((err, data) => {
+            if (err) return res.status(400).json({ success: false, err });
+            return res.status(200).json({ success: true, data })
+        });
+};
+
 exports.updateOne = async (req, res, next) => {
     await Center.updateOne(
         { _id: req.params.id },
@@ -22,15 +31,6 @@ exports.updateOne = async (req, res, next) => {
         if (err) return res.status(400).json({ success: false, err });
         return res.status(200).json({ success: true, data })
     })
-};
-
-exports.getAll = async (req, res, next) => {
-    await Center.find()
-        .sort({ createdAt: -1 })
-        .exec((err, data) => {
-            if (err) return res.status(400).json({ success: false, err });
-            return res.status(200).json({ success: true, data })
-        });
 };
 
 exports.getOne = async (req, res, next) => {
