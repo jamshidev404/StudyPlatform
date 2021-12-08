@@ -14,7 +14,7 @@ exports.adding = (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-    await Center.find()
+    await Markaz.find()
         .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
@@ -23,7 +23,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.updateOne = async (req, res, next) => {
-    await Center.updateOne(
+    await Markaz.updateOne(
         { _id: req.params.id },
         { $set: req.body },
         { new: true }
@@ -35,7 +35,7 @@ exports.updateOne = async (req, res, next) => {
 
 exports.getOne = async (req, res, next) => {
 
-    await Center.findOne({ _id: req.params.id })
+    await Markaz.findOne({ _id: req.params.id })
 
   const director = await Director.find({ director_id: req.params.id }).select({ name: 1, director_id: 1 })
         .exec((err, data) => {
@@ -45,7 +45,7 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.rm = async (req, res, next) => {
-    await Center.deleteOne({ _id: req.params.id })
+    await Markaz.deleteOne({ _id: req.params.id })
     .exec((err, data) => {
         if (err) return res.status(400).json({ success: false, err })
         return res.status(200).json({ success: true, data: data })
