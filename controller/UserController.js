@@ -19,6 +19,7 @@ exports.create = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
+    console.log(req.body)
     await User.findOne({ login: req.body.login })
         .exec((err, data) => {
             if (err)
@@ -37,7 +38,7 @@ exports.login = async (req, res, next) => {
             //console.log(token)
             return res.status(200).json({ success: true, token })
         });
-}
+};
 
 exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
