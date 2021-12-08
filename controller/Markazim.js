@@ -35,12 +35,12 @@ exports.updateOne = async (req, res, next) => {
 
 exports.getOne = async (req, res, next) => {
 
-    await Markaz.findOne({ _id: req.params.id })
+    const data = await Markaz.findOne({ _id: req.params.id })
 
-  const director = await Director.find({ director_id: req.params.id }).select({ name: 1, director_id: 1 })
-        .exec((err, data) => {
+  await Director.find({ director_id: req.params.id })//.select({ name: 1, director_id: 1 })
+        .exec((err, data1) => {
             if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, director,  data: data })
+            return res.status(200).json({ success: true, director: data1,  data: data })
         });
 };
 
