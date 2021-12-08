@@ -10,10 +10,10 @@ exports.create = async (req, res, next) => {
     const password = await bcrypt.hashSync(req.body.password, salt);
 
     let user = new User({
-        user: { name: req.body.name },
-        role: { role: req.body.role },
-        login: { login: req.body.login },
-        password: { password: req.body.password },
+        name: req.body.name,
+         role: req.body.role,
+        login: req.body.login ,
+        password: req.body.password ,
 
     });
     user.password = password;

@@ -18,15 +18,15 @@ const schema = mongoose.Schema({
     gender: {
         type: Number,
         enum: [ 1, 2 ],
-        required: true
+        //required: true
     },
     phone: {
          type: String,
-         required: true
+        // required: true
     },
     address: {
         type: String,
-         required: true
+        // required: true
     },
     role: {
         type: String,
@@ -34,12 +34,12 @@ const schema = mongoose.Schema({
     },
     birthday: {
         type: String,
-         required: true
+        // required: true
     },
     center_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Center",
-        required: true
+        //required: true
     }
 },
     { timestaps: true }
