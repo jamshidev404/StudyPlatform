@@ -27,7 +27,6 @@ app.use("/api/user",   require("./routes/UserRouter"));
 app.use("/api/upload", require("./routes/UploadRouter"));
 app.use("/api/qabul",  require("./routes/Acceptance"));
 app.use("/api/exam",   require("./routes/ExamRouter"));
-app.use("/api/study",  require("./routes/StudyRouter"));
 app.use("/api/group",  require("./routes/GroupRouter"));
 app.use("/api/pupil",  require("./routes/PupilRouter"));
 app.use("/api/teacher",require("./routes/TeacherRouter"));

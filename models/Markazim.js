@@ -9,6 +9,18 @@ const schema = mongoose.Schema({
     },
     address: { 
         type: String
+    },
+    contract: {
+        type: String,
+        required: true
+    },
+    contractdate: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
     }
 },
     { timestamps: true }
