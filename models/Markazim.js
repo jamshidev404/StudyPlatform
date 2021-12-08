@@ -2,16 +2,19 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
     name: {
-         type: String
+         type: String,
+         required: true
     },
     inn: {
-        type: Number
+        type: Number,
+        required: true
     },
     address: { 
-        type: String
+        type: String,
+        required: true
     },
     contract: {
-        type: String,
+        type: Number,
         required: true
     },
     contractdate: {
