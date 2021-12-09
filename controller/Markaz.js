@@ -1,4 +1,4 @@
-const Markaz = require('../models/Markazim');
+const Markaz = require('../models/Markaz');
 const Director = require('../models/DirectorModel');
 
 exports.adding = (req, res) => {

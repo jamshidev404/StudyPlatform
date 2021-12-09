@@ -3,7 +3,7 @@ const router = express.Router();
 const Science = require("../controller/ScienceController");
 
 router.post("/add", Science.create),
-router.get("/all", Science.getAll),
+router.post("/all", Science.getAll),
 router.get("/:id", Science.getOne),
 router.get("/get/:id", Science.getScience),
 router.put("/:id", Science.updateOne),

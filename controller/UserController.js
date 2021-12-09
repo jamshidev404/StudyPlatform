@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Director = require('../models/DirectorModel')
 const Pupil = require('../models/PupilModel')
-const Markaz = require('../models/Markazim')
+const Markaz = require('../models/Markaz')
 
 exports.create = async (req, res, next) => {
     const salt = await bcrypt.genSaltSync(12);
@@ -82,15 +82,11 @@ exports.me = async (req, res, next) => {
      let userd = await User.findOne({_id:user.id})
     let director = null
      if(userd.role == "admin"){
-         director = await Director.findOne({ user: userd._id }) 
-        
-        
+         director = await Director.findOne({ user: userd._id })   
     }
     return  res.status(200).json({ success: true, data: {
         userd, director
-    }})
-
-       
+    }})     
 };
 
 exports.getOne = async (req, res, next) => {

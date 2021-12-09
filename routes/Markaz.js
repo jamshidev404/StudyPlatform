@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const Markaz = require("../controller/Markazim");
+const Markaz = require("../controller/Markaz");
 
 router.post('/add', Markaz.adding);
 router.get('/all', Markaz.getAll);

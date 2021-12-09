@@ -1,5 +1,5 @@
 const Director = require("../models/DirectorModel");
-const Center = require("../models/Markazim");
+const Center = require("../models/Markaz");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
