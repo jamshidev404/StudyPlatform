@@ -79,7 +79,7 @@ exports.me = async (req, res, next) => {
     console.log(token, user)
     let user = await User.findById(user.id)
         .then(()=> {
-            if (users.role == "admin") {
+            if (user.role == "admin") {
                 return Markaz.findById({ _id: req.body.id })
             }
         })
