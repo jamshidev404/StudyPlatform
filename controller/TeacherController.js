@@ -41,7 +41,6 @@ exports.login = async (req, res, next) => {
 }
 
 exports.getAll = async (req, res, next) => {
-    console.log(req.body)
      const { page, limit } = req.query
     // const science = await Science.find({ science_id: req.params.id })
     // .select({ name: 1, science_id: 1 })
@@ -57,8 +56,19 @@ exports.getAll = async (req, res, next) => {
         });
 };
 
+exports.getAllOne = async (req, res) => {
+    const { page, limit } = req.query
+    await Teacher.find({ center_id: req.body.id })
+    .skip((page - 1) * limit)
+    .limit(limit * 1)
+    .sort({ createdAt: -1 })
+    .exec((err, data) => {
+        if (err) return res.status(400).json({ success: false, err });
+        return res.status(200).json({ success: true, data, count })
+    });
+}
+
 exports.getOne = async (req, res, next) => {
-console.log(req.body)
     let teacher = await Teacher.findById({ _id: req.params.id }).populate("sciences");
     
     await Group.find({ teacher_id: req.params.id })
