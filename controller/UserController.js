@@ -22,6 +22,7 @@ exports.create = async (req, res, next) => {
         .then(() => {
 
             if(user.role == "admin"){
+                req.body.user = user._id
                 const director = new Director(req.body)
 
             director.save()
@@ -75,17 +76,21 @@ exports.getAll = async (req, res, next) => {
 
 exports.me = async (req, res, next) => {    
     const token = req.headers.authorization.split(" ")[1];
-    const users = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
-    console.log(token, user)
-    let user = await User.findById(user.id)
-        .then(()=> {
-            if (user.role == "admin") {
-                return Markaz.findById({ _id: req.body.id })
-            }
-        })
-        .catch((err) => {
-            return res.status(400).json({ success: false, err, message: "Xatolik mavjud!" })
-        })
+
+    const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
+    //console.log( users )// id ni qaytaradi
+     let userd = await User.findOne({_id:user.id})
+    let director = null
+     if(userd.role == "admin"){
+         director = await Director.findOne({ user: userd._id }) 
+        
+        
+    }
+    return  res.status(200).json({ success: true, data: {
+        userd, director
+    }})
+
+       
 };
 
 exports.getOne = async (req, res, next) => {
