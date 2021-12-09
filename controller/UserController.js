@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Director = require('../models/DirectorModel')
 const Pupil = require('../models/PupilModel')
+const Markaz = require('../models/Markazim')
 
 exports.create = async (req, res, next) => {
     const salt = await bcrypt.genSaltSync(12);
@@ -55,7 +56,6 @@ exports.login = async (req, res, next) => {
             const payload = { id: data._id };
 
             const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY, { expiresIn: process.env.TOKEN_EXPIRES_IN });
-            //console.log(token)
             return res.status(200).json({ success: true, token })
         });
 };
@@ -75,12 +75,16 @@ exports.getAll = async (req, res, next) => {
 
 exports.me = async (req, res, next) => {    
     const token = req.headers.authorization.split(" ")[1];
-    const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
+    const users = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
     console.log(token, user)
-    await User.findById(user.id)
-        .exec((err, data) => {
-            if (err) return res.status(404).json({ success: false, err });
-            return res.status(200).json({ success: true, data })
+    let user = await User.findById(user.id)
+        .then(()=> {
+            if (users.role = "admin") {
+                return Markaz.findById({ _id: req.body.id })
+            }
+        })
+        .catch((err) => {
+            return res.status(400).json({ success: false, err, message: "Xatolik mavjud!" })
         })
 };
 

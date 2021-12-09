@@ -48,7 +48,7 @@ const schema = mongoose.Schema({
     },
     center_id: {
         type: mongoose.Schema.ObjectId,
-        ref: "Center",
+        ref: "Markaz",
         required: true
     },
     role: {
