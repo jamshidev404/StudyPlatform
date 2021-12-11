@@ -50,63 +50,34 @@ exports.login = async (req, res, next) => {
 exports.getAll = async (req, res) => {
   const { page, limit } = req.query;
   const count = await Teacher.countDocuments();
-  await Teacher.find().populate({ path: "user" })//.select({ name: 1, user: 1 })
-    //{ science_id: req.params.id }
-    //.select({ name: 1, science_id: 1 })
+  await Teacher.find({ center_id: req.body.center }).populate({ path: "user" })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
-      return res.status(200).json({ success: true, count, data });
+      return res.status(200).json({ success: true, count,  data });
     });
 };
 
-exports.getAllOne = async (req, res) => {
-  console.log(req.body);
-  let count = Teacher.countDocuments({ center_id: req.body.center });
-  const { page, limit } = req.query;
-  await Teacher.find({ center_id: req.body.center })
-    .skip((page - 1) * limit)
-    .limit(limit * 1)
+exports.getTeacherAll = async (req, res) => {
+  await Teacher.find({ center_id: req.body.center }).populate({ path: "user" })
     .sort({ createdAt: -1 })
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data });
     });
-}; //await user.find({ user: req.body.id }).populate({ path: "user", select: "name" })
-
-exports.getAllOnce = async (req, res) => {
-  console.log(req.body);
-  let count = Teacher.countDocuments({ center_id: req.body.center });
-
-  await Teacher.findOne({ _id: user.id }) //.populate({ path: "user", select: "name" })
-
-    .exec((err, data) => {
-      if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true, data });
-    });
-};
+}; 
 
 exports.getOne = async (req, res, next) => {
-  let teacher = await Teacher.findById({ _id: req.params.id }).populate(
-    "sciences"
-  );
-
-  await Group.find({ teacher_id: req.params.id })
-    .populate("group_id")
+  let teacher = await Teacher.findById({ _id: req.params.id }).populate({path: "user" })
+  await Teacher.find({ science_id: req.body.science_id })//.populate({ path: "science_id",  })
+  //await Teacher.find({ group_id: req.body.group_id })
+    //.populate("group_id")
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
       return res.status(200).json({ success: true, teacher, data: data });
     });
-};
-
-exports.getOneTeacher = async (req, res, next) => {
-  await Teacher.findOne({ _id: req.params.id })
-  .exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: data });
-  });
 };
 
 exports.updateOne = async (req, res, next) => {

@@ -4,11 +4,9 @@ const Teacher = require("../controller/TeacherController");
 
 router.post("/add", Teacher.create),
 router.post('/login', Teacher.login),
-router.post('/getall', Teacher.getAllOne),
-router.get("/all", Teacher.getAll),
+router.post('/all', Teacher.getTeacherAll),
+router.post("/getall", Teacher.getAll),
 router.get("/:id", Teacher.getOne),
-router.get("/getonce", Teacher.getAllOnce),
-router.get("/get/:id", Teacher.getOneTeacher),
 router.put("/:id", Teacher.updateOne),
 router.delete("/:id", Teacher.rm);
 

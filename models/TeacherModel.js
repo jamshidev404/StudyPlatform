@@ -10,7 +10,7 @@ const schema = mongoose.Schema({
     },
     group_id: { 
         type: mongoose.Schema.ObjectId,
-        ref: "Science",
+        ref: "Group",
         index: true,
         //required: true
     },
