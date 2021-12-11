@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Group = require("../controller/GroupsController");
 
-router.get("/status", Group.getStatusByAll),
+router.post("/status", Group.getStatusByAll),
   router.post("/add", Group.create),
   router.post("/all", Group.getAll),
   router.get("/all/:id", Group.getOne),
