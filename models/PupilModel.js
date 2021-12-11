@@ -45,11 +45,11 @@ const schema = mongoose.Schema(
       ref: "Markaz",
       required: true,
     },
-    eduType: {
-      type: String,
-      enum: ["online", "offline"],
-      default: "offline",
-    },
+    // eduType: {
+    //   type: String,
+    //   enum: ["online", "offline"],
+    //   default: "offline",
+    // },
   },
   { timestamps: true }
 );
