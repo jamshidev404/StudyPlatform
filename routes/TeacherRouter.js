@@ -7,6 +7,7 @@ router.post('/login', Teacher.login),
 router.post('/getall', Teacher.getAllOne),
 router.get("/all", Teacher.getAll),
 router.get("/:id", Teacher.getOne),
+router.get("/getonce", Teacher.getAllOnce),
 router.get("/get/:id", Teacher.getOneTeacher),
 router.put("/:id", Teacher.updateOne),
 router.delete("/:id", Teacher.rm);

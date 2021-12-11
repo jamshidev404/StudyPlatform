@@ -18,10 +18,9 @@ exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
     const count = await Group.countDocuments()
     await Science.find({ center_id: req.body.id })
-    //const center = await Center.find({ center_id: req.body.id }).select({ name: 1, center_id: 1 })
         .skip((page - 1) * limit)
         .limit(limit * 1)
- 
+        .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
             return res.status(200).json({ success: true, data, count })

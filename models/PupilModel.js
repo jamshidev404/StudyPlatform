@@ -1,20 +1,17 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
+
     group_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Group",
-        required: true,
+        //required: true,
         index: true
     },
     user_id: {
         type: mongoose.Schema.ObjectId,
         ref: "User",
-        required: true,
+        //required: true,
         index: true
     },
     isPayed: {  
@@ -22,29 +19,21 @@ const schema = mongoose.Schema({
         default: false,
     },
     phone: {
-        type: String,
+        type: Number,
         require: true,
     },
     address: {
         type: String,
-        require: true
+        //require: true
     },
     date: {
         type: String,
-        require: true
-    },
-    login: {
-        type: String,
-        require: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        require: true
+        //require: true
     },
     gender: {
-        type: String,
-        require: true
+        type: Number,
+        enum: [1, 2],
+        required: true
     },
     center_id: {
         type: mongoose.Schema.ObjectId,

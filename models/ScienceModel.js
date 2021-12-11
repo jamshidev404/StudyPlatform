@@ -5,11 +5,6 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    group_id: {
-        type: mongoose.Schema.ObjectId,
-        //required: true,
-        ref: "Group"
-    },
     center_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Markaz",
@@ -18,7 +13,7 @@ const schema = mongoose.Schema({
     
 },
 
- { timestamp: true }
+ { timestamps: true }
 );
 
 module.exports = mongoose.model("Science", schema);

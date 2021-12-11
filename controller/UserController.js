@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const Director = require('../models/DirectorModel')
 const Pupil = require('../models/PupilModel')
 const Markaz = require('../models/Markaz')
+const Teacher = require('../models/TeacherModel')
 
 exports.create = async (req, res, next) => {
     const salt = await bcrypt.genSaltSync(12);
@@ -28,7 +29,17 @@ exports.create = async (req, res, next) => {
             director.save()
             return res.status(200).json({ success: true, data: user });
             }
+
+            if(user.role == "teacher"){
+                req.body.user = user._id
+                const teacher = new Teacher(req.body)
+
+            teacher.save()
+            return res.status(200).json({ success: true, data: teacher });
+            }
+
             if(user.role == "pupil"){
+                req.body.user = user._id
                 const pupil = new Pupil(req.body)
 
             pupil.save()
@@ -87,7 +98,7 @@ exports.me = async (req, res, next) => {
     return  res.status(200).json({ success: true, data: {
         userd, director
     }})     
-};
+}
 
 exports.getOne = async (req, res, next) => {
     await User.findOne({ _id: req.params.id })

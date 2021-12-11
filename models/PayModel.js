@@ -35,7 +35,7 @@ const schema = mongoose.Schema({
         required: true
     }
 },
-    { timestamp: true }
+    { timestamps: true }
 );
 
 exports = mongoose.model("Pays", schema);

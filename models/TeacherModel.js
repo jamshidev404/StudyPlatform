@@ -1,26 +1,14 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    login: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
+ 
     science_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
-        required: true
+        //required: true
     },
-    group_id: {
+    group_id: { 
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
@@ -29,6 +17,11 @@ const schema = mongoose.Schema({
     center_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Markaz",
+        //required: true
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
         required: true
     },
     gender: {
@@ -43,16 +36,12 @@ const schema = mongoose.Schema({
         type: String,
         //required: true
     },
-    role: {
-        type: String,
-        default: "teacher"
-    },
     phone: {
         type: Number,
         required: true
     }
 },
-    { timestamps: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Teacher", schema);

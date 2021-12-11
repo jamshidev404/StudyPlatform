@@ -15,15 +15,14 @@ const schema = mongoose.Schema(
         "parents",
         "moderator",
         "teacher",
-        "user",
-        "pupil",
+        "pupil"
       ],
       required: true,
     },
     login: {
       type: String,
       required: true,
-      unique: true,
+        unique: true,
     },
     password: {
       type: String,
@@ -32,12 +31,6 @@ const schema = mongoose.Schema(
     status: {
       type: Boolean,
       default: true,
-    },
-    phone: {
-      type: String,
-    },
-    experience: {
-      type: String,
     },
     eduType: {
       type: String,
@@ -51,24 +44,7 @@ const schema = mongoose.Schema(
     },
     science: {
       type: String,
-    },
-    group: {
-      type: String,
-    },
-    image: {
-      type: String,
-    },
-    gender: {
-      type: String,
-    },
-    date: {
-      type: String,
-      //required: true
-    },
-    address: {
-      type: String,
-      //required: true
-    },
+    }
   },
   { timestamps: true }
 );
