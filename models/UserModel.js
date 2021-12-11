@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     role: {
       type: String,
       enum: ["superadmin", "admin", "parents", "moderator", "teacher", "pupil"],

@@ -6,13 +6,13 @@ const Director = require("../models/DirectorModel");
 const Pupil = require("../models/PupilModel");
 const Markaz = require("../models/Markaz");
 const Teacher = require("../models/TeacherModel");
+const SuperAdmin = require("../models/SuperAdmin");
 
 exports.create = async (req, res, next) => {
   const salt = await bcrypt.genSaltSync(12);
   const password = await bcrypt.hashSync(req.body.password, salt);
 
   let user = new User({
-    name: req.body.name,
     role: req.body.role,
     login: req.body.login,
     password: req.body.password,
@@ -21,12 +21,19 @@ exports.create = async (req, res, next) => {
   user
     .save()
     .then(() => {
+      if (user.role == "superadmin") {
+        req.body.user = user._id;
+        const superadmin = new SuperAdmin(req.body);
+
+        superadmin.save();
+        return res.status(200).json({ success: true, data: superadmin });
+      }
       if (user.role == "admin") {
         req.body.user = user._id;
         const director = new Director(req.body);
 
         director.save();
-        return res.status(200).json({ success: true, data: user });
+        return res.status(200).json({ success: true, data: director });
       }
 
       if (user.role == "teacher") {
@@ -42,7 +49,7 @@ exports.create = async (req, res, next) => {
         const pupil = new Pupil(req.body);
 
         pupil.save();
-        return res.status(200).json({ success: true, data: user });
+        return res.status(200).json({ success: true, data: pupil });
       }
     })
     .catch((err) => {

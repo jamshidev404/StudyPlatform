@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     science_id: [
       {
         type: mongoose.Schema.ObjectId,

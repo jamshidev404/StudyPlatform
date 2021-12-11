@@ -1,35 +1,41 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const schema = mongoose.Schema({
+const schema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-       // required: true
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      // required: true
     },
     gender: {
-        type: Number,
-        enum: [ 1, 2 ],
-        //required: true
+      type: Number,
+      enum: [1, 2],
+      //required: true
     },
     phone: {
-         type: Number,
-        // required: true
+      type: Number,
+      // required: true
     },
     address: {
-        type: String,
-        // required: true
+      type: String,
+      // required: true
     },
     birthday: {
-        type: String,
-        // required: true
+      type: String,
+      // required: true
     },
     center_id: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Markaz",
-        //required: true
-    }
-},
-      { timestamps: true }
+      type: mongoose.Schema.ObjectId,
+      ref: "Markaz",
+      //required: true
+    },
+  },
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Director", schema);

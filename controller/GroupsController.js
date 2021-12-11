@@ -4,12 +4,12 @@ const Teacher = require("../models/TeacherModel");
 const Science = require("../models/ScienceModel");
 
 exports.create = async (req, res) => {
-  let result = new Group(req.body);
+  let group = new Group(req.body);
 
-  await result
+  await group
     .save()
     .then(() => {
-      return res.status(200).json({ success: true, data: result });
+      return res.status(200).json({ success: true, data: group });
     })
     .catch((err) => {
       return res.status(400).json({ success: false, err });
@@ -17,13 +17,14 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-  const { page, limit } = req.query;
+  //const { page, limit } = req.query;
   const count = await Group.countDocuments();
-  await Group.find() 
+  await Group.find({ center_id: req.body.center })
     .sort({ createdAt: -1 })
-    .populate({ path: "user_id" })
-    .skip((page - 1) * limit)
-    .limit(limit * 1)
+    .populate({ path: "teacher_id", select: "name" })
+
+    // .skip((page - 1) * limit)
+    // .limit(limit * 1)
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data, count });
@@ -65,39 +66,35 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.getGroup = async (req, res, next) => {
-  await Group.findOne({ _id: req.params.id })
-  .exec((err, data) => {
+  await Group.findOne({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data: data });
   });
 };
 
 exports.getStatus = async (req, res, next) => {
-  const arxiv = await Group.find({status: "arxiv"})
-  const active =  await Group.find({ status: "active" })
-  const unactive = await Group.find({ status: "unactive" })
+  const arxiv = await Group.find({ status: "arxiv" });
+  const active = await Group.find({ status: "active" });
+  const unactive = await Group.find({ status: "unactive" });
 
-      return res
-        .status(200)
-        .json({
-          success: true,
-          arxiv: arxiv,
-          active: active,
-          unactive: unactive
-        });
-    
+  return res.status(200).json({
+    success: true,
+    arxiv: arxiv,
+    active: active,
+    unactive: unactive,
+  });
 };
 
 exports.updateStatus = async (req, res) => {
-    await Group.updateOne(
-        { _id: req.params.id },
-        { $set: req.body },
-        { new: true }
-        ).exec((err, data) => {
-            if (err) return res.status(400).json({ success: false, err });
-            return res.status(200).json({ success: true, data: data });
-          });
-}
+  await Group.updateOne(
+    { _id: req.params.id },
+    { $set: req.body },
+    { new: true }
+  ).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data: data });
+  });
+};
 
 exports.updateOne = async (req, res, next) => {
   await Group.updateOne(
