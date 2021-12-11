@@ -10,13 +10,13 @@ const schema = mongoose.Schema(
     group_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Group",
-      //required: true,
+      required: true,
       index: true,
     },
-    user_id: {
+    user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
-      //required: true,
+      required: true,
       index: true,
     },
     isPayed: {
@@ -29,11 +29,11 @@ const schema = mongoose.Schema(
     },
     address: {
       type: String,
-      //require: true
+      require: true,
     },
     date: {
       type: String,
-      //require: true
+      require: true,
     },
     gender: {
       type: Number,
@@ -44,10 +44,6 @@ const schema = mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "Markaz",
       required: true,
-    },
-    role: {
-      type: String,
-      default: "pupil",
     },
     eduType: {
       type: String,

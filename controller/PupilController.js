@@ -1,33 +1,15 @@
 const Pupil = require("../models/PupilModel");
-const User = require("../models/UserModel");
 
 exports.create = async (req, res) => {
-  let user = new User({
-    login: req.body.login,
-    role: req.body.role,
-    password: req.body.password,
-  });
+  const salt = await bcrypt.genSaltSync(12);
+  const password = await bcrypt.hashSync(req.body.password, salt);
 
-  await user
+  let pupil = new Pupil(req.body);
+  pupil.password = password;
+  pupil
     .save()
-    .then(async () => {
-      let pupil = new Pupil({
-        name: req.body.name,
-        address: req.body.address,
-        user_id: user._id,
-        group_id: req.body.group_id,
-        phone: req.body.phone,
-        isPayed: req.body.isPayed,
-      });
-
-      pupil
-        .save()
-        .then((res) => {
-          return res.status(200).json({ success: true, data: pupil });
-        })
-        .catch((err) => {
-          return res.status(400).json({ success: false, err });
-        });
+    .then(() => {
+      return res.status(200).json({ success: true, data: pupil });
     })
     .catch((err) => {
       return res.status(400).json({ success: false, err });
@@ -58,8 +40,7 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.getPay = async (req, res, next) => {
-  await Pupil.findOne({ _id: req.params.id })
-  .exec((err, data) => {
+  await Pupil.findOne({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, isPayed: data.isPayed });
   });
