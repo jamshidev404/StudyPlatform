@@ -9,42 +9,23 @@ const schema = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: [
-        "superadmin",
-        "admin",
-        "parents",
-        "moderator",
-        "teacher",
-        "pupil"
-      ],
+      enum: ["superadmin", "admin", "parents", "moderator", "teacher", "pupil"],
       required: true,
     },
     login: {
       type: String,
       required: true,
-        unique: true,
+      unique: true,
     },
     password: {
       type: String,
       required: true,
     },
-    status: {
-      type: Boolean,
-      default: true,
-    },
-    eduType: {
-      type: String,
-      enum: ["online", "offline"],
-      default: "offline",
-    },
     center_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Markaz",
-      //required: true
+      required: true,
     },
-    science: {
-      type: String,
-    }
   },
   { timestamps: true }
 );

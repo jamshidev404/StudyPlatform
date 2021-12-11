@@ -7,19 +7,21 @@ const schema = mongoose.Schema(
         type: mongoose.Schema.ObjectId,
         ref: "Science",
         index: true,
+        required: true,
+      },
+    ],
+    group_id: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Group",
+        index: true,
         //required: true
       },
     ],
-    group_id: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Group",
-      index: true,
-      //required: true
-    },
     center_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Markaz",
-      //required: true
+      required: true,
     },
     user: {
       type: mongoose.Schema.ObjectId,
@@ -37,6 +39,14 @@ const schema = mongoose.Schema(
     },
     phone: {
       type: Number,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
       required: true,
     },
   },
