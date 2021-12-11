@@ -69,11 +69,11 @@ exports.getGroup = async (req, res, next) => {
       path: "teacher_id",
       select: "name",
     })
-    .populate("user")
+    // .populate("user")
     .populate("science_id")
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
-      return res.status(200).json({ success: true, data: data });
+      return res.status(200).json({ success: true, count, data: data });
     });
 };
 
