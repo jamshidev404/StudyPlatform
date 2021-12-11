@@ -87,6 +87,15 @@ exports.getStatus = async (req, res, next) => {
   });
 };
 
+exports.getGroupStatus = async (req, res, next) => {
+  await Group.findOne({ _id: req.params.id })
+    .select({ status: 1 })
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data: data });
+    });
+};
+
 exports.updateStatus = async (req, res) => {
   await Group.updateOne(
     { _id: req.params.id },

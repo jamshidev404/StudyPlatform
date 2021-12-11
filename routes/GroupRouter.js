@@ -8,6 +8,7 @@ router.post("/status", Group.getStatusByAll),
   router.get("/all/:id", Group.getOne),
   router.get("/group/:id", Group.getGroup),
   router.get("/status/:id", Group.getStatus),
+  router.get("/get/status/:id", Group.getGroupStatus),
   router.put("/update/status/:id", Group.updateStatus),
   router.put("/:id", Group.updateOne),
   router.delete("/:id", Group.rm);
