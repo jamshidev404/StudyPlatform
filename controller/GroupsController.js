@@ -21,10 +21,10 @@ exports.getAll = async (req, res, next) => {
   const count = await Group.countDocuments();
   await Group.find({ center_id: req.body.center })
     .sort({ createdAt: -1 })
-    .populate({ path: "teacher_id", select: "name" })
-
     .skip((page - 1) * limit)
     .limit(limit * 1)
+    .populate({ path: "teacher_id", select: "name" })
+    .populate({ path: "science_id", select: "name" })
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data, count });
@@ -34,10 +34,12 @@ exports.getAll = async (req, res, next) => {
 exports.getStatusByAll = async (req, res, next) => {
   const { page, limit, status } = req.query;
   const count = await Group.countDocuments();
-  await Group.find({ status: status })
+  await Group.find({ status: status, center_id: req.body.center })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(parseInt(limit))
+    .populate({ path: "teacher_id", select: "name" })
+    .populate({ path: "science_id", select: "name" })
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data, count });
