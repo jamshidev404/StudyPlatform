@@ -24,7 +24,7 @@ const schema = mongoose.Schema(
     center_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Markaz",
-      required: true,
+      //required: true,
     },
   },
   { timestamps: true }

@@ -18,11 +18,6 @@ const schema = mongoose.Schema(
         //required: true
       },
     ],
-    center_id: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Markaz",
-      required: true,
-    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
