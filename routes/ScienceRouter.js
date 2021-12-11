@@ -4,6 +4,7 @@ const Science = require("../controller/ScienceController");
 
 router.post("/add", Science.create),
 router.post("/all", Science.getAll),
+router.post("/getall", Science.getScienceAll),
 router.get("/:id", Science.getOne),
 router.get("/get/:id", Science.getScience),
 router.put("/:id", Science.updateOne),

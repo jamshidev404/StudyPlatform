@@ -17,9 +17,19 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res, next) => {
     const { page = 1, limit = 10 } = req.query
     const count = await Group.countDocuments()
-    await Science.find({ center_id: req.body.id })
+    await Science.find({ center_id: req.body.center })
         .skip((page - 1) * limit)
         .limit(limit * 1)
+        .sort({ createdAt: -1 })
+        .exec((err, data) => {
+            if (err) return res.status(400).json({ success: false, err });
+            return res.status(200).json({ success: true, data, count })
+        });
+};
+
+exports.getScienceAll = async (req, res, next) => {
+    const count = await Group.countDocuments()
+    await Science.find({ center_id: req.body.center })
         .sort({ createdAt: -1 })
         .exec((err, data) => {
             if (err) return res.status(400).json({ success: false, err });
