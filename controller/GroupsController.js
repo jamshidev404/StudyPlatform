@@ -46,35 +46,20 @@ exports.getStatusByAll = async (req, res, next) => {
     });
 };
 
-exports.getOne = async (req, res, next) => {
-  let group = await Group.findById({ _id: req.params.id })
-    .populate({
-      path: "teacher_id",
-      select: "name",
-    })
-    .populate("user_id")
-    .populate("science_id")
-    .exec((err, data) => {
-      if (err) return res.status(404).json({ success: false, err });
-      return res
-        .status(200)
-        .json({ success: true, group, science, teacher, count, pupils: pupil });
-    });
-};
-
 exports.getGroup = async (req, res, next) => {
   const count = await Group.countDocuments();
-  await Group.findById({ _id: req.params.id })
+  const datas = await Group.findById({ _id: req.params.id })
     .populate({
       path: "teacher_id",
       select: "name",
     })
-    // .populate("user")
-    .populate("science_id")
-    .exec((err, data) => {
-      if (err) return res.status(404).json({ success: false, err });
-      return res.status(200).json({ success: true, count, data: data });
-    });
+    .populate("science_id");
+  await Pupil.find({ pupil_id: req.params.id }).exec((err, data) => {
+    if (err) return res.status(404).json({ success: false, err });
+    return res
+      .status(200)
+      .json({ success: true, count, data: datas, pupil: data });
+  });
 };
 
 exports.getStatus = async (req, res, next) => {
