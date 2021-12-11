@@ -38,8 +38,8 @@ app.use("/api/superadmin", require("./routes/SuperAdmin"));
 
 // Connect to DataBase
 const port = process.env.PORT || 7000;
-const mongoDB =
-  "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority";
+const mongoDB = "mongodb://localhost:27017/study";
+// "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority";
 
 mongoose
   .connect(mongoDB, {
