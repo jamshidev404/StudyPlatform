@@ -60,7 +60,8 @@ exports.create = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   console.log(req.body);
   await User.findOne({ login: req.body.login }).exec((err, data) => {
-    if (err) return res.status(400).json({ success: false });
+    if (err)
+      return res.status(400).json({ success: false, message: "Xatolik bor" });
 
     if (!data) res.status(404).json({ success: false, data: "User not found" });
 
@@ -92,7 +93,6 @@ exports.getAll = async (req, res, next) => {
 
 exports.me = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
-
   const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
   //console.log( users )// id ni qaytaradi
   let userd = await User.findOne({ _id: user.id });
