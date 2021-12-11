@@ -17,14 +17,14 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-  //const { page, limit } = req.query;
+  const { page, limit } = req.query;
   const count = await Group.countDocuments();
   await Group.find({ center_id: req.body.center })
     .sort({ createdAt: -1 })
     .populate({ path: "teacher_id", select: "name" })
 
-    // .skip((page - 1) * limit)
-    // .limit(limit * 1)
+    .skip((page - 1) * limit)
+    .limit(limit * 1)
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data, count });
