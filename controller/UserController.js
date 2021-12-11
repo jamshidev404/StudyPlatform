@@ -98,7 +98,10 @@ exports.me = async (req, res, next) => {
   let userd = await User.findOne({ _id: user.id });
   let director = null;
   if (userd.role == "admin") {
-    director = await Director.findOne({ user: userd._id });
+    director = await Director.findOne({ user: userd._id }).populate({
+      path: "center_id",
+      select: "name",
+    });
   }
   return res.status(200).json({
     success: true,
