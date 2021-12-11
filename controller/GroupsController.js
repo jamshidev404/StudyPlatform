@@ -47,31 +47,34 @@ exports.getStatusByAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-  let group = await Group.findById({ _id: req.params.id });
-
-  const pupil = await Pupil.find({ group_id: req.params.id }).populate(
-    "user_id"
-  );
-  const teacher = await Group.find({ teacher_id: req.params.id }).populate({
-    path: "teacher_id",
-    select: "name",
-  });
-  const science = await Teacher.find({ science_id: req.params.id }).populate(
-    "science_id"
-  );
-  const count = await Group.countDocuments().exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res
-      .status(200)
-      .json({ success: true, group, science, teacher, count, pupils: pupil });
-  });
+  let group = await Group.findById({ _id: req.params.id })
+    .populate({
+      path: "teacher_id",
+      select: "name",
+    })
+    .populate("user_id")
+    .populate("science_id")
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res
+        .status(200)
+        .json({ success: true, group, science, teacher, count, pupils: pupil });
+    });
 };
 
 exports.getGroup = async (req, res, next) => {
-  await Group.findOne({ _id: req.params.id }).exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: data });
-  });
+  const count = await Group.countDocuments();
+  await Group.findById({ _id: req.params.id })
+    .populate({
+      path: "teacher_id",
+      select: "name",
+    })
+    .populate("user")
+    .populate("science_id")
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data: data });
+    });
 };
 
 exports.getStatus = async (req, res, next) => {
