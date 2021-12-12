@@ -27,20 +27,24 @@ exports.getAll = async (req, res, next) => {
       return res.status(200).json({ success: true, data, count });
     });
 };
-//.find({ center_id: req.body.center })
+
 exports.getAllTest = async (req, res, next) => {
-  await Science.aggregate([
-    { $sort: { createdAt: -1 } },
+  await Group.aggregate([
+    {
+      $match: { center_id: req.body.center },
+    },
+    { $group: { _id: "$science_id", count: { $sum: 1 } } },
+
     {
       $lookup: {
-        from: "Groups",
+        from: "sciences",
         localField: "_id",
-        foreignField: "science",
-        as: "datagroup",
+        foreignField: "_id",
+        as: "science",
       },
-      // $match: { science_id: req.body.id },
     },
-    //{ $addFields: { studentCount: { $size: "datagroup" } } },
+
+    { $unwind: "$science" },
   ]).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true, data });
