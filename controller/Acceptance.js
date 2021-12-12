@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res, next) => {
   const { page, limit } = req.query;
   const count = await Qabulxona.countDocuments();
-  await Qabulxona.find()
+  await Qabulxona.find({ center_id: req.body.center })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
