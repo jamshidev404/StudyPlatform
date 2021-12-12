@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Director = require("../models/DirectorModel");
 const Pupil = require("../models/PupilModel");
-const Markaz = require("../models/Markaz");
+const Markaz = require("../models/CenterModel");
 const Teacher = require("../models/TeacherModel");
 const SuperAdmin = require("../models/SuperAdmin");
 

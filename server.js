@@ -33,7 +33,7 @@ app.use("/api/teacher", require("./routes/TeacherRouter"));
 app.use("/api/science", require("./routes/ScienceRouter"));
 app.use("/api/pay", require("./routes/PayRouter"));
 app.use("/api/director", require("./routes/DirectorRouter"));
-app.use("/api/markaz", require("./routes/Markaz"));
+app.use("/api/markaz", require("./routes/CenterRouter"));
 app.use("/api/superadmin", require("./routes/SuperAdmin"));
 
 // Connect to DataBase

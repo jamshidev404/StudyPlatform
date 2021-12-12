@@ -1,5 +1,5 @@
 const Director = require("../models/DirectorModel");
-const Center = require("../models/Markaz");
+const Center = require("../models/CenterModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -47,20 +47,20 @@ exports.login = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
   const { page = 1, limit = 10 } = req.query;
   const count = await Director.countDocuments();
-  await Director.find().populate({ path: "user"})
+  await Director.find()
+    .populate({ path: "user" })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
 
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true, count, data });//
+      return res.status(200).json({ success: true, count, data }); //
     });
-}
+};
 
 exports.getOne = async (req, res, next) => {
-  await Director.findOne({ _id: req.params.id })
-  .exec((err, data) => {
+  await Director.findOne({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data: data });
   });

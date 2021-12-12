@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const schema = mongoose.Schema(
+const DirectorSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -38,4 +38,9 @@ const schema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Director", schema);
+DirectorSchema.pre("remove", async function (next) {
+  await this.model("User").deleteMany({ user: this._id });
+  next();
+});
+
+module.exports = mongoose.model("Director", DirectorSchema);
