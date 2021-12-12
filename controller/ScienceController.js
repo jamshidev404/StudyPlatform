@@ -27,6 +27,25 @@ exports.getAll = async (req, res, next) => {
       return res.status(200).json({ success: true, data, count });
     });
 };
+//.find({ center_id: req.body.center })
+exports.getAllTest = async (req, res, next) => {
+  await Science.aggregate([
+    { $sort: { createdAt: -1 } },
+    {
+      $lookup: {
+        from: "Groups",
+        localField: "_id",
+        foreignField: "science",
+        as: "datagroup",
+      },
+      // $match: { science_id: req.body.id },
+    },
+    //{ $addFields: { studentCount: { $size: "datagroup" } } },
+  ]).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data });
+  });
+};
 
 exports.getScienceAll = async (req, res, next) => {
   const count = await Group.countDocuments();
