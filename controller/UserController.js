@@ -103,6 +103,17 @@ exports.me = async (req, res, next) => {
       select: "name",
     });
   }
+  if (userd.role == "superadmin") {
+    director = await SuperAdmin.findOne({ user: userd._id }).select({
+      name: 1,
+    });
+  }
+  if (userd.role == "teacher") {
+    director = await Teacher.findOne({ user: userd._id }).populate({
+      path: "center_id",
+      select: "name",
+    });
+  }
   return res.status(200).json({
     success: true,
     data: {
