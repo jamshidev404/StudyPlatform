@@ -16,18 +16,28 @@ exports.create = (req, res) => {
     });
 };
 
+// exports.getAll = async (req, res, next) => {
+//   const { page, limit } = req.query;
+//   const count = await Pay.countDocuments();
+//   await Pay.find({ center_id: req.body.center })
+//     .sort({ createdAt: -1 })
+//     .skip((page - 1) * limit)
+//     .limit(limit * 1)
+//     .populate({ path: "pupil_id", select: "name" })
+//     .exec((err, data) => {
+//       if (err) return res.status(400).json({ success: false, err });
+//       return res.status(200).json({ success: true, data, count });
+//     });
+// };
+
 exports.getAll = async (req, res, next) => {
-  const { page, limit } = req.query;
-  const count = await Pay.countDocuments();
-  await Pay.find({ center_id: req.body.center })
-    .sort({ createdAt: -1 })
-    .skip((page - 1) * limit)
-    .limit(limit * 1)
-    .populate({ path: "pupil_id", select: "name" })
-    .exec((err, data) => {
-      if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true, data, count });
-    });
+  await Pay.aggregate([
+    { $match: { pupil_id: "price" } },
+    { $group: { pupil_id: "pupil_id", total: { $sum: "$pupil.price" } } },
+  ]).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data });
+  });
 };
 
 exports.getOne = async (req, res, next) => {
