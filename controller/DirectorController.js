@@ -48,7 +48,6 @@ exports.getAll = async (req, res, next) => {
   const { page, limit } = req.query;
   const count = await Director.countDocuments();
   await Director.find()
-    .populate({ path: "user" })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
