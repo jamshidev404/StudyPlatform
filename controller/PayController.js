@@ -1,12 +1,12 @@
+const { populate } = require("../models/GroupsModel");
 const Group = require("../models/GroupsModel");
 const Pay = require("../models/PayModel");
 // const Pupil = require("../models/PupilModel");
-// const Group = require("../models/GroupsModel")
 
-exports.create = async (req, res) => {
+exports.create = (req, res) => {
   let result = new Pay(req.body);
 
-  await result
+  result
     .save()
     .then(() => {
       return res.status(200).json({ success: true, data: result });
@@ -17,12 +17,13 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res, next) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page, limit } = req.query;
   const count = await Pay.countDocuments();
-  await Pay.find()
+  await Pay.find({ center_id: req.body.center })
+    .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
-    .sort({ createdAt: -1 })
+    .populate({ path: "pupil_id", select: "name" })
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data, count });

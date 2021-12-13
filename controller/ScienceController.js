@@ -30,9 +30,6 @@ exports.getAll = async (req, res, next) => {
 
 exports.getAllTest = async (req, res, next) => {
   await Group.aggregate([
-    {
-      $match: { center_id: req.body.center },
-    },
     { $group: { _id: "$science_id", count: { $sum: 1 } } },
 
     {
