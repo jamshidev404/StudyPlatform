@@ -2,7 +2,8 @@ const { populate } = require("../models/GroupsModel");
 const Group = require("../models/GroupsModel");
 const Pay = require("../models/PayModel");
 const mongoose = require("mongoose");
-// const Pupil = require("../models/PupilModel");
+const Pupil = require("../models/PupilModel");
+const User = require("../models/UserModel");
 
 exports.create = (req, res) => {
   let result = new Pay(req.body);
@@ -51,28 +52,29 @@ exports.getAll = async (req, res) => {
     });
 };
 
-// exports.getOne = async (req, res, next) => {
-//   console.log(req.body);
-//   await Pay.findById({ _id: req.params.id })
-//     //await Group.find({ group_id: req.params.id })
-//     //.populate({ path: "group_id", select: "name" })
-//     .exec((err, data) => {
-//       if (err) return res.status(404).json({ success: false, err });
-//       return res.status(200).json({ success: true, data: data });
-//     });
+// Zapas
+// exports.getOnes = async (req, res, next) => {
+//   await Pay.aggregate([
+//     { $group: { _id: "$pupil_id", pupils: { $push: "$$ROOT" } } },
+//     {
+//       $addFields: {
+//         allsum: { $sum: "$pupils.payamount" },
+//       },
+//     },
+//   ]).exec((err, data) => {
+//     if (err) return res.status(404).json({ success: false, err });
+//     return res.status(200).json({ success: true, data: data });
+//   });
 // };
 
-exports.getOnes = async (req, res, next) => {
-  await Pay.aggregate([
-    { $group: { _id: "$pupil_id", total: { $sum: "$payamount" } } },
-  ]).exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: data });
-  });
+exports.getOnes = async (req, res) => {
+  await Pay.find({ pupil_id: req.params.id })
+    .populate({ path: "pupil_id", select: "name" })
+    .exec((err, data) => {
+      if (err) return res.status(400).json({ success: false, err });
+      return res.status(200).json({ success: true, data });
+    });
 };
-// findById({ _id: req.params.id })
-
-//     .populate({ path: "pupil_id", select: "name" })
 
 exports.updateOne = async (req, res, next) => {
   await Pay.updateOne(
