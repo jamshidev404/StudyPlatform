@@ -49,7 +49,7 @@ exports.login = async (req, res, next) => {
 exports.getAll = async (req, res) => {
   const { page, limit } = req.query;
   const count = await Teacher.countDocuments();
-  await Teacher.find({ center_id: req.body.center })
+  await Teacher.find({ center_id: req.body.center._id })
     .populate({ path: "user" })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
