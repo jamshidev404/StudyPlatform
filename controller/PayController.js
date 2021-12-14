@@ -51,26 +51,28 @@ exports.getAll = async (req, res) => {
     });
 };
 
-exports.getOne = async (req, res, next) => {
-  console.log(req.body);
-  await Pay.findById({ _id: req.params.id })
-    //await Group.find({ group_id: req.params.id })
-    //.populate({ path: "group_id", select: "name" })
-    .exec((err, data) => {
-      if (err) return res.status(404).json({ success: false, err });
-      return res.status(200).json({ success: true, data: data });
-    });
-};
+// exports.getOne = async (req, res, next) => {
+//   console.log(req.body);
+//   await Pay.findById({ _id: req.params.id })
+//     //await Group.find({ group_id: req.params.id })
+//     //.populate({ path: "group_id", select: "name" })
+//     .exec((err, data) => {
+//       if (err) return res.status(404).json({ success: false, err });
+//       return res.status(200).json({ success: true, data: data });
+//     });
+// };
 
 exports.getOnes = async (req, res, next) => {
-  //let pays = await Pay.findById({ _id: req.params.id });
-  await Pay.find({ pupil_id: req.body.pupil })
-    .populate({ path: "pupil_id", select: "name" })
-    .exec((err, data) => {
-      if (err) return res.status(404).json({ success: false, err });
-      return res.status(200).json({ success: true, data: data });
-    });
+  await Pay.aggregate([
+    { $group: { _id: "$pupil_id", total: { $sum: "$payamount" } } },
+  ]).exec((err, data) => {
+    if (err) return res.status(404).json({ success: false, err });
+    return res.status(200).json({ success: true, data: data });
+  });
 };
+// findById({ _id: req.params.id })
+
+//     .populate({ path: "pupil_id", select: "name" })
 
 exports.updateOne = async (req, res, next) => {
   await Pay.updateOne(
