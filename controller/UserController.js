@@ -109,10 +109,10 @@ exports.me = async (req, res, next) => {
     });
   }
   if (userd.role == "teacher") {
-    director = await Teacher.findOne({ user: userd._id }); //.populate({
-    //   path: "center_id",
-    //   select: "name",
-    // });
+    director = await Teacher.findOne({ user: userd._id }).populate({
+      path: "center_id",
+      select: "name",
+    });
   }
   return res.status(200).json({
     success: true,

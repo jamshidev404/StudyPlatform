@@ -77,6 +77,13 @@ exports.getOnes = async (req, res) => {
     });
 };
 
+exports.getOne = async (req, res) => {
+  await Pay.findById({ _id: req.params.id }).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data });
+  });
+};
+
 exports.updateOne = async (req, res, next) => {
   await Pay.updateOne(
     { _id: req.params.id },

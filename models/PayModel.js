@@ -35,6 +35,12 @@ const schema = mongoose.Schema(
       index: true,
       required: true,
     },
+    date: {
+      type: String,
+    },
+    comment: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
