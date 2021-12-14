@@ -23,6 +23,12 @@ const schema = mongoose.Schema(
         //required: true
       },
     ],
+    center_id: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Markaz",
+      index: true,
+      required: true,
+    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",

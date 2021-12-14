@@ -33,14 +33,14 @@ app.use("/api/teacher", require("./routes/TeacherRouter"));
 app.use("/api/science", require("./routes/ScienceRouter"));
 app.use("/api/pay", require("./routes/PayRouter"));
 app.use("/api/director", require("./routes/DirectorRouter"));
-app.use("/api/markaz", require("./routes/CenterRouter"));
+app.use("/api/center", require("./routes/CenterRouter"));
 app.use("/api/superadmin", require("./routes/SuperAdmin"));
 
 // Connect to DataBase
 const port = process.env.PORT || 7000;
 const mongoDB =
   "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority";
-
+//"mongodb://localhost:27017/study";
 mongoose
   .connect(mongoDB, {
     useNewUrlParser: true,
