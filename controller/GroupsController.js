@@ -96,7 +96,16 @@ exports.updateStatus = async (req, res) => {
 };
 
 exports.teacherGroups = async (req, res) => {
-  await Group.find({ teacher_id: req.params.id }).exec((err, data) => {
+  await Group.find({ teacher_id: req.params.id })
+    .populate({ path: "science_id", select: "name" })
+    .exec((err, data) => {
+      if (err) return res.status(400).json({ success: false, err });
+      return res.status(200).json({ success: true, data });
+    });
+};
+
+exports.groupStatus = async (req, res) => {
+  await Group.find({ science_id: req.params.id }).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true, data });
   });
