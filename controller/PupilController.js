@@ -1,11 +1,11 @@
 const Pupil = require("../models/PupilModel");
 
 exports.create = async (req, res) => {
-  const salt = await bcrypt.genSaltSync(12);
-  const password = await bcrypt.hashSync(req.body.password, salt);
+  //const salt = await bcrypt.genSaltSync(12);
+  //const password = await bcrypt.hashSync(req.body.password, salt);
 
   let pupil = new Pupil(req.body);
-  pupil.password = password;
+  //pupil.password = password;
   pupil
     .save()
     .then(() => {
@@ -42,10 +42,12 @@ exports.ExportAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-  await Pupil.findOne({ _id: req.params.id }).exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: data });
-  });
+  await Pupil.findOne({ _id: req.params.id })
+    .populate({ path: "user", select: ["login", "password"] })
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data: data });
+    });
 };
 
 exports.getPay = async (req, res, next) => {

@@ -9,15 +9,15 @@ const Teacher = require("../models/TeacherModel");
 const SuperAdmin = require("../models/SuperAdmin");
 
 exports.create = async (req, res, next) => {
-  const salt = await bcrypt.genSaltSync(12);
-  const password = await bcrypt.hashSync(req.body.password, salt);
+  //const salt = await bcrypt.genSaltSync(12);
+  //const password = await bcrypt.hashSync(req.body.password, salt);
 
   let user = new User({
     role: req.body.role,
     login: req.body.login,
     password: req.body.password,
   });
-  user.password = password;
+  //user.password = password;
   user
     .save()
     .then(() => {

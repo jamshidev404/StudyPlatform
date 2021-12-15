@@ -4,11 +4,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.create = (req, res) => {
-  const salt = bcrypt.genSaltSync(12);
-  const password = bcrypt.hashSync(req.body.password, salt);
+  //const salt = bcrypt.genSaltSync(12);
+  //const password = bcrypt.hashSync(req.body.password, salt);
 
   let director = new Director(req.body);
-  director.password = password;
+  //director.password = password;
   director
     .save()
     .then(() => {
