@@ -7,8 +7,9 @@ const Pupil = require("../models/PupilModel");
 const Markaz = require("../models/CenterModel");
 const Teacher = require("../models/TeacherModel");
 const SuperAdmin = require("../models/SuperAdmin");
+const Moderator = require("../models/ModeratorModel");
 
-exports.create = async (req, res, next) => {
+exports.create = async (req, res) => {
   //const salt = await bcrypt.genSaltSync(12);
   //const password = await bcrypt.hashSync(req.body.password, salt);
 
@@ -34,6 +35,14 @@ exports.create = async (req, res, next) => {
 
         director.save();
         return res.status(200).json({ success: true, data: director });
+      }
+
+      if (user.role == "moderator") {
+        req.body.user = user._id;
+        const moderator = new Moderator(req.body);
+
+        moderator.save();
+        return res.status(200).json({ success: true, data: moderator });
       }
 
       if (user.role == "teacher") {

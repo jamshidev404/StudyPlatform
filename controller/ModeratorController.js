@@ -1,10 +1,9 @@
-const Qabulxona = require("../models/Acceptance");
-const Center = require("../models/CenterModel");
+const Moderator = require("../models/ModeratorModel");
 
-exports.create = async (req, res) => {
-  let result = new Qabulxona(req.body);
+exports.create = (req, res) => {
+  let result = new Moderator(req.body);
 
-  await result
+  result
     .save()
     .then(() => {
       return res.status(200).json({ success: true, data: result });
@@ -16,8 +15,8 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res, next) => {
   const { page, limit } = req.query;
-  const count = await Qabulxona.countDocuments();
-  await Qabulxona.find({ center_id: req.body.center })
+  const count = await Moderator.countDocuments();
+  await Moderator.find({ center_id: req.body.center })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
@@ -27,15 +26,22 @@ exports.getAll = async (req, res, next) => {
     });
 };
 
+exports.me = async (req, res, next) => {
+  await Moderator.findOne({ _id: req.params.id }).exec((err, data) => {
+    if (err) return res.status(404).json({ success: false, err });
+    return res.status(200).json({ success: true, data: data });
+  });
+};
+
 exports.getOne = async (req, res, next) => {
-  await Qabulxona.findOne({ _id: req.params.id }).exec((err, data) => {
+  await Moderator.findById({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data: data });
   });
 };
 
 exports.updateOne = async (req, res, next) => {
-  await Qabulxona.updateOne(
+  await Moderator.updateOne(
     { _id: req.params.id },
     { $set: req.body },
     { new: true }
@@ -46,7 +52,7 @@ exports.updateOne = async (req, res, next) => {
 };
 
 exports.rm = async (req, res, next) => {
-  await Qabulxona.deleteOne({ _id: req.params.id }).exec((err, data) => {
+  await Moderator.deleteOne({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true, data: data });
   });
