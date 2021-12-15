@@ -69,13 +69,22 @@ exports.getTeacherAll = async (req, res) => {
     });
 };
 
+exports.teacherGroups = async (req, res) => {
+  await Teacher.find({ group_id: req.params.id })
+    .populate({})
+    .exec((err, data) => {
+      if (err) return res.status(400).json({ success: false, err });
+      return res.status(200).json({ success: true, data });
+    });
+};
+
 exports.getOne = async (req, res, next) => {
   let teacher = await Teacher.findById({ _id: req.params.id })
     .populate({
       path: "user",
     })
     .populate({ path: "science_id" })
-    .populate({ path: "group_id" })
+    .populate({ path: "group_id", select: "name" })
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
       return res

@@ -95,6 +95,13 @@ exports.updateStatus = async (req, res) => {
   });
 };
 
+exports.teacherGroups = async (req, res) => {
+  await Group.find({ teacher_id: req.params.id }).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data });
+  });
+};
+
 exports.updateOne = async (req, res, next) => {
   await Group.updateOne(
     { _id: req.params.id },

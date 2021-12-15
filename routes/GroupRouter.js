@@ -6,6 +6,7 @@ router.post("/status", Group.getStatusByAll),
   router.post("/add", Group.create),
   router.post("/all", Group.getAll),
   router.get("/:id", Group.getGroup),
+  router.get("/teacher/:id", Group.teacherGroups), //o'qituvchi guruhlarini olish
   router.get("/status/:id", Group.getStatus),
   router.get("/get/status/:id", Group.getGroupStatus),
   router.put("/update/status/:id", Group.updateStatus),
