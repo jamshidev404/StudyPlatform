@@ -44,6 +44,7 @@ exports.ExportAll = async (req, res, next) => {
 exports.getOne = async (req, res, next) => {
   await Pupil.findOne({ _id: req.params.id })
     .populate({ path: "user", select: ["login", "password"] })
+    .populate({ path: "group_id", select: "name" })
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
       return res.status(200).json({ success: true, data: data });

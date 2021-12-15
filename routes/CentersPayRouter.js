@@ -3,7 +3,7 @@ const router = express.Router();
 const CenterPay = require("../controller/CentersPayController");
 
 router.post("/add", CenterPay.create),
-  router.post("/all", CenterPay.getAll),
+  router.get("/all", CenterPay.getAll),
   router.get("/by/:id", CenterPay.getOnes),
   router.get("/:id", CenterPay.getOne),
   router.put("/:id", CenterPay.updateOne),

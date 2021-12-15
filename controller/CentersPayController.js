@@ -20,7 +20,7 @@ exports.getAll = async (req, res) => {
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
-    //.populate({ path: "center_id", select: ["name", "phone", "address"] })
+    .populate({ path: "center_id", select: ["name", "phone", "address"] })
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
       return res.status(200).json({ success: true, data: data, count });
