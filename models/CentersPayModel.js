@@ -23,8 +23,14 @@ const schema = mongoose.Schema(
       ref: "Markaz",
       required: true,
     },
+    date: {
+      type: String,
+    },
+    comment: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Pay", schema);
+module.exports = mongoose.model("CenterPay", schema);
