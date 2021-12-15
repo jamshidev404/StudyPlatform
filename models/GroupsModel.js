@@ -48,14 +48,6 @@ const schema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    // pupil_id: [
-    //   {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "Pupil",
-    //     index: true,
-    //     //required: true,
-    //   },
-    // ],
     teacher_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Teacher",
