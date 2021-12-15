@@ -2,6 +2,7 @@ const Group = require("../models/GroupsModel");
 const Pupil = require("../models/PupilModel");
 const Teacher = require("../models/TeacherModel");
 const Science = require("../models/ScienceModel");
+const mongoose = require("mongoose");
 
 exports.create = async (req, res) => {
   let group = new Group(req.body);
@@ -104,8 +105,13 @@ exports.teacherGroups = async (req, res) => {
     });
 };
 
-exports.groupStatus = async (req, res) => {
-  await Group.find({ science_id: req.params.id }).exec((err, data) => {
+exports.scienceStatus = async (req, res) => {
+  await Group.aggregate([
+    { $match: { science_id: mongoose.Types.ObjectId(req.params.id) } },
+    {
+      $group: { _id: "$status", count: { $sum: 1 } },
+    },
+  ]).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true, data });
   });

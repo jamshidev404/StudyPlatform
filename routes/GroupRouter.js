@@ -7,7 +7,7 @@ router.post("/status", Group.getStatusByAll),
   router.post("/all", Group.getAll),
   router.get("/:id", Group.getGroup),
   router.get("/teacher/:id", Group.teacherGroups), //o'qituvchi guruhlarini olish
-  router.get("/science/:id", Group.groupStatus), //guruhlar statuslari bilan olish
+  router.get("/science/:id", Group.scienceStatus), //guruhlar statuslari bilan olish
   router.get("/status/:id", Group.getStatus), // id bo'yicha faqat bittasini olish, alohida
   router.get("/get/status/:id", Group.getGroupStatus),
   router.put("/update/status/:id", Group.updateStatus),
