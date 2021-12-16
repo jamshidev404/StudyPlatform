@@ -15,7 +15,7 @@ exports.adding = (req, res) => {
 
 exports.getAll = async (req, res, next) => {
   const { page, limit } = req.query;
-  const count = await Center.countDocuments();
+  const count = await Markaz.countDocuments();
   await Markaz.find({ center_id: req.params.center })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
