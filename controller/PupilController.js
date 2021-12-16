@@ -1,11 +1,7 @@
 const Pupil = require("../models/PupilModel");
 
 exports.create = async (req, res) => {
-  //const salt = await bcrypt.genSaltSync(12);
-  //const password = await bcrypt.hashSync(req.body.password, salt);
-
   let pupil = new Pupil(req.body);
-  //pupil.password = password;
   pupil
     .save()
     .then(() => {

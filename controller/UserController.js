@@ -108,7 +108,7 @@ exports.me = async (req, res, next) => {
   let director = null;
   if (userd.role == "admin") {
     director = await Director.findOne({ user: userd._id }).populate({
-      path: "center_id",
+      // path: "center_id",
       select: "name",
     });
   }
