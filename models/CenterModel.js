@@ -25,15 +25,12 @@ const schema = mongoose.Schema(
       },
       phone: {
         type: String,
-        required: true,
       },
       email: {
         type: String,
-        required: true,
       },
       paybefore: {
         type: String,
-        required: true,
       },
     },
     director: {
@@ -52,16 +49,11 @@ const schema = mongoose.Schema(
         required: true,
       },
       phone: {
-        type: Number,
-        required: true,
-      },
-      address: {
         type: String,
         required: true,
       },
       email: {
         type: String,
-        required: true,
       },
       birthday: {
         type: String,
@@ -71,5 +63,9 @@ const schema = mongoose.Schema(
   },
   { timestamps: true }
 );
+schema.pre("remove", async function (next) {
+  await this.model("User").deleteMany({ user: this._id });
+  next();
+});
 
 module.exports = mongoose.model("Markaz", schema);
