@@ -9,7 +9,7 @@ exports.adding = (req, res) => {
       res.status(200).json({ success: true, data: markaz });
     })
     .catch((err) => {
-      res.status(400).json({ success: false, message: "Xatolik ro'y berdi!" });
+      res.status(400).json({ success: false, err });
     });
 };
 
