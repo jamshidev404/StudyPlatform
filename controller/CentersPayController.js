@@ -29,11 +29,11 @@ exports.getAll = async (req, res) => {
 
 //bittasi barcha ma'lumotlar bilan olish
 exports.getOnes = async (req, res) => {
-  await CenterPay.find({ center_id: req.params.center })
-    .populate({ path: "center_id", select: ["name", "address", "phone"] })
+  await CenterPay.find({ center_id: req.params.id })
+    //.populate({ path: "center_id", select: ["name", "address", "phone"] })
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true, data });
+      return res.status(200).json({ success: true, data: data });
     });
 };
 
