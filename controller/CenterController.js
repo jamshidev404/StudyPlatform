@@ -34,20 +34,15 @@ exports.updateOne = async (req, res, next) => {
     { new: true }
   ).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
-    return res.status(200).json({ success: true, data });
+    return res.status(200).json({ success: true, data: data });
   });
 };
 
 exports.getOne = async (req, res, next) => {
-  const data = await Markaz.findOne({ _id: req.params.id });
-
-  await Director.find({ director_id: req.params.id }) //.select({ name: 1, director_id: 1 })
-    .exec((err, data1) => {
-      if (err) return res.status(404).json({ success: false, err });
-      return res
-        .status(200)
-        .json({ success: true, director: data1, data: data });
-    });
+  await Markaz.findById({ _id: req.params.id }).exec((err, data1) => {
+    if (err) return res.status(404).json({ success: false, err });
+    return res.status(200).json({ success: true, director: data1, data: data });
+  });
 };
 
 exports.rm = async (req, res, next) => {
