@@ -2,59 +2,54 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
-    center: {
-      name: {
-        type: String,
-        required: true,
-      },
-      inn: {
-        type: Number,
-        required: true,
-      },
-      address: {
-        type: String,
-        required: true,
-      },
-      contract: {
-        type: Number,
-        required: true,
-      },
-      contractdate: {
-        type: String,
-        required: true,
-      },
-      phone: {
-        type: String,
-      },
-      email: {
-        type: String,
-      },
-      paybefore: {
-        type: Number,
-      },
+    centername: {
+      type: String,
+      required: true,
     },
-    director: {
-      name: {
-        type: String,
-        required: true,
-      },
-
-      gender: {
-        type: String,
-        enum: [1, 2],
-        required: true,
-      },
-      phone: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-      },
-      birthday: {
-        type: String,
-        required: true,
-      },
+    inn: {
+      type: Number,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    contract: {
+      type: Number,
+      required: true,
+    },
+    contractdate: {
+      type: String,
+      required: true,
+    },
+    centerphone: {
+      type: String,
+    },
+    centeremail: {
+      type: String,
+    },
+    paybefore: {
+      type: Number,
+    },
+    directorname: {
+      type: String,
+      required: true,
+    },
+    gender: {
+      type: String,
+      enum: [1, 2],
+      required: true,
+    },
+    directorphone: {
+      type: String,
+      required: true,
+    },
+    directoremail: {
+      type: String,
+    },
+    birthday: {
+      type: String,
+      required: true,
     },
     user: {
       type: mongoose.Schema.ObjectId,
