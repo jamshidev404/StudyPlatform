@@ -30,7 +30,7 @@ const schema = mongoose.Schema(
         type: String,
       },
       paybefore: {
-        type: String,
+        type: Number,
       },
     },
     director: {
