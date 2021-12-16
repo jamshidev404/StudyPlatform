@@ -2,7 +2,7 @@ const { promisify } = require("util");
 const User = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Director = require("../models/DirectorModel");
+const CenterDirector = require("../models/CenterModel");
 const Pupil = require("../models/PupilModel");
 const Markaz = require("../models/CenterModel");
 const Teacher = require("../models/TeacherModel");
@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
       }
       if (user.role == "admin") {
         req.body.user = user._id;
-        const director = new Director(req.body);
+        const director = new CenterDirector(req.body);
 
         director.save();
         return res.status(200).json({ success: true, data: director });
