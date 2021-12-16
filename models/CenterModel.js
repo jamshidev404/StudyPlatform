@@ -38,11 +38,7 @@ const schema = mongoose.Schema(
         type: String,
         required: true,
       },
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true,
-      },
+
       gender: {
         type: String,
         enum: [1, 2],
@@ -59,6 +55,11 @@ const schema = mongoose.Schema(
         type: String,
         required: true,
       },
+    },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
