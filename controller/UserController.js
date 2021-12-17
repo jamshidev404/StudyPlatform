@@ -74,16 +74,16 @@ exports.login = async (req, res, next) => {
 
     if (!data) res.status(404).json({ success: false, data: "User not found" });
 
-    if (!bcrypt.compareSync(req.body.password, data.password)) {
-      return res.status(400).json({ success: false, data: "Password wrong" });
-    }
+    // if (!bcrypt.compareSync(req.body.password, data.password)) {
+    //   return res.status(400).json({ success: false, data: "Password wrong" });
+    // }
 
     const payload = { id: data._id };
 
     const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY, {
       expiresIn: process.env.TOKEN_EXPIRES_IN,
     });
-    return res.status(200).json({ success: true, token });
+    return res.status(200).json({ success: true }); //token
   });
 };
 
