@@ -107,9 +107,11 @@ exports.me = async (req, res, next) => {
   let userd = await User.findOne({ _id: user.id });
   let director = null;
   if (userd.role == "admin") {
-    director = await CenterDirector.findOne({ user: userd._id }).select(
-      "directorname"
-    );
+    director = await CenterDirector.findOne({ user: userd._id }).select([
+      "directorname",
+      "centername",
+      "center_id",
+    ]);
   }
   if (userd.role == "superadmin") {
     director = await SuperAdmin.findOne({ user: userd._id }).select({
