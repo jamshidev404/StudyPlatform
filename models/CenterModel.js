@@ -44,9 +44,6 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
-    directoremail: {
-      type: String,
-    },
     birthday: {
       type: String,
       required: true,
