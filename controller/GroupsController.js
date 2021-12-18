@@ -47,6 +47,7 @@ exports.getStatusByAll = async (req, res, next) => {
     });
 };
 
+// id bo'yicha bittasini olish
 exports.getGroup = async (req, res, next) => {
   const count = await Group.countDocuments();
   const datas = await Group.findById({ _id: req.params.id })
@@ -55,7 +56,7 @@ exports.getGroup = async (req, res, next) => {
       select: "name",
     })
     .populate("science_id");
-  await Pupil.find({ pupil_id: req.params.id }).exec((err, data) => {
+  await Pupil.find({ group_id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res
       .status(200)
