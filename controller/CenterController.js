@@ -38,10 +38,12 @@ exports.updateOne = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-  await Center.findById({ _id: req.params.id }).exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: data });
-  });
+  await Center.findById({ _id: req.params.id })
+    .populate({ path: "user", select: ["login", "password"] })
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data: data });
+    });
 };
 
 exports.rm = async (req, res, next) => {
