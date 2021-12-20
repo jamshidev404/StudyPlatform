@@ -5,8 +5,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.create = async (req, res) => {
-  //const salt = await bcrypt.genSaltSync(12);
-  //const password = await bcrypt.hashSync(req.body.password, salt);
+  // const salt = await bcrypt.genSaltSync(12);
+  // const password = await bcrypt.hashSync(req.body.password, salt);
 
   let teacher = new Teacher(req.body);
   //teacher.password = password;
