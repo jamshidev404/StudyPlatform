@@ -47,7 +47,7 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.rm = async (req, res, next) => {
-  await Center.findById({ _id: req.params.id }).exec((err, data) => {
+  await Center.deleteOne({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true, data: "Ma'lumot o'chirildi" });
   });
