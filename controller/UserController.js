@@ -67,7 +67,6 @@ exports.create = async (req, res) => {
 };
 
 exports.login = async (req, res, next) => {
-  console.log(req.body);
   await User.findOne({ login: req.body.login }).exec((err, data) => {
     if (err)
       return res.status(400).json({ success: false, message: "Xatolik bor" });
@@ -104,28 +103,28 @@ exports.me = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
   //console.log( users )// id ni qaytaradi
-  let userd = await User.findOne({ _id: user.id });
+  let users = await User.findOne({ _id: user.id });
   let director = null;
-  if (userd.role == "admin") {
-    director = await CenterDirector.findOne({ user: userd._id }).select([
+  if (users.role == "admin") {
+    director = await CenterDirector.findOne({ user: users._id }).select([
       "directorname",
       "centername",
       "center_id",
     ]);
   }
-  if (userd.role == "superadmin") {
-    director = await SuperAdmin.findOne({ user: userd._id }).select({
+  if (users.role == "superadmin") {
+    director = await SuperAdmin.findOne({ user: users._id }).select({
       name: 1,
     });
   }
-  if (userd.role == "teacher") {
-    director = await Teacher.findOne({ user: userd._id }).populate({
+  if (users.role == "teacher") {
+    director = await Teacher.findOne({ user: users._id }).populate({
       path: "center_id",
       select: "name",
     });
   }
-  if (userd.role == "pupil") {
-    director = await Pupil.findOne({ user: userd._id }).populate({
+  if (users.role == "pupil") {
+    director = await Pupil.findOne({ user: users._id }).populate({
       path: "center_id",
       select: "centername",
     });
