@@ -36,7 +36,7 @@ app.use("/api/center", require("./routes/CenterRouter"));
 app.use("/api/superadmin", require("./routes/SuperAdmin"));
 app.use("/api/centerpay", require("./routes/CentersPayRouter"));
 app.use("/api/moderator", require("./routes/ModeratorRouter"));
-app.use("/api/elon", require("./routes/AdRouter"));
+app.use("/api/ad", require("./routes/AdRouter"));
 
 // Connect to DataBase
 const port = process.env.PORT || 7000;
