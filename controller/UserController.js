@@ -74,9 +74,9 @@ exports.login = async (req, res, next) => {
 
     if (!data) res.status(404).json({ success: false, data: "User not found" });
 
-    // if (!bcrypt.compareSync(req.body.password, data.password)) {
-    //   return res.status(400).json({ success: false, data: "Password wrong" });
-    // }
+    if (!bcrypt.compareSync(req.body.password, data.password)) {
+      return res.status(400).json({ success: false, data: "Password wrong" });
+    }
 
     const payload = { id: data._id };
 
@@ -125,9 +125,9 @@ exports.me = async (req, res, next) => {
     });
   }
   if (userd.role == "pupil") {
-    director = await Teacher.findOne({ user: userd._id }).populate({
+    director = await Pupil.findOne({ user: userd._id }).populate({
       path: "center_id",
-      select: "name",
+      select: "centername",
     });
   }
   return res.status(200).json({
