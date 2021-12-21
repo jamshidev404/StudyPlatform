@@ -103,28 +103,28 @@ exports.me = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
   //console.log( users )// id ni qaytaradi
-  let users = await User.findOne({ _id: user.id });
+  let userd = await User.findOne({ _id: user.id });
   let director = null;
   if (users.role == "admin") {
-    director = await CenterDirector.findOne({ user: users._id }).select([
+    director = await CenterDirector.findOne({ user: userd._id }).select([
       "directorname",
       "centername",
       "center_id",
     ]);
   }
   if (users.role == "superadmin") {
-    director = await SuperAdmin.findOne({ user: users._id }).select({
+    director = await SuperAdmin.findOne({ user: userd._id }).select({
       name: 1,
     });
   }
   if (users.role == "teacher") {
-    director = await Teacher.findOne({ user: users._id }).populate({
+    director = await Teacher.findOne({ user: userd._id }).populate({
       path: "center_id",
       select: "name",
     });
   }
   if (users.role == "pupil") {
-    director = await Pupil.findOne({ user: users._id }).populate({
+    director = await Pupil.findOne({ user: userd._id }).populate({
       path: "center_id",
       select: "centername",
     });
@@ -132,7 +132,7 @@ exports.me = async (req, res, next) => {
   return res.status(200).json({
     success: true,
     data: {
-      users,
+      userd,
       director,
     },
   });
