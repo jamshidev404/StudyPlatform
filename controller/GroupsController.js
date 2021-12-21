@@ -80,11 +80,12 @@ exports.getStatus = async (req, res, next) => {
 
 //gruppani statusiga ko'ra olish
 exports.getGroupStatus = async (req, res, next) => {
+  const count = Pupil.countDocuments();
   await Group.findOne({ _id: req.params.id })
     .select({ status: 1 })
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
-      return res.status(200).json({ success: true, data: data });
+      return res.status(200).json({ success: true, data: data, count });
     });
 };
 
