@@ -50,7 +50,7 @@ exports.getStatusByAll = async (req, res, next) => {
 
 // id bo'yicha bittasini olish
 exports.getGroup = async (req, res, next) => {
-  const count = await Group.countDocuments();
+  const count = await Pupil.countDocuments();
   const datas = await Group.findById({ _id: req.params.id })
     .populate({
       path: "teacher_id",
