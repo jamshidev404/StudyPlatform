@@ -64,7 +64,6 @@ exports.getGroup = async (req, res, next) => {
 };
 
 exports.getStatus = async (req, res, next) => {
-  console.log(req.body);
   const arxiv = await Group.find({ status: "arxiv" });
   const active = await Group.find({ status: "active" });
   const unactive = await Group.find({ status: "unactive" });
