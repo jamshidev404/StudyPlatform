@@ -50,7 +50,7 @@ exports.getStatusByAll = async (req, res, next) => {
 
 // id bo'yicha bittasini olish
 exports.getGroup = async (req, res, next) => {
-  const count = await Pupil.countDocuments({ _id: req.params.id });
+  // const count = await Group.countDocuments();
   const datas = await Group.findById({ _id: req.params.id })
     .populate({
       path: "teacher_id",
@@ -59,9 +59,7 @@ exports.getGroup = async (req, res, next) => {
     .populate("science_id");
   await Pupil.find({ group_id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
-    return res
-      .status(200)
-      .json({ success: true, count, data: datas, pupil: data });
+    return res.status(200).json({ success: true, data: datas, pupil: data });
   });
 };
 
