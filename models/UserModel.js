@@ -11,7 +11,6 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      message: "Boshqa login kiriting",
     },
     password: {
       type: String,
