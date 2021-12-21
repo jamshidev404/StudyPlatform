@@ -105,25 +105,25 @@ exports.me = async (req, res, next) => {
   //console.log( users )// id ni qaytaradi
   let userd = await User.findOne({ _id: user.id });
   let director = null;
-  if (users.role == "admin") {
+  if (userd.role == "admin") {
     director = await CenterDirector.findOne({ user: userd._id }).select([
       "directorname",
       "centername",
       "center_id",
     ]);
   }
-  if (users.role == "superadmin") {
+  if (userd.role == "superadmin") {
     director = await SuperAdmin.findOne({ user: userd._id }).select({
       name: 1,
     });
   }
-  if (users.role == "teacher") {
+  if (userd.role == "teacher") {
     director = await Teacher.findOne({ user: userd._id }).populate({
       path: "center_id",
       select: "name",
     });
   }
-  if (users.role == "pupil") {
+  if (userd.role == "pupil") {
     director = await Pupil.findOne({ user: userd._id }).populate({
       path: "center_id",
       select: "centername",
