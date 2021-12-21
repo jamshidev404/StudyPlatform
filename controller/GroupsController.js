@@ -32,6 +32,7 @@ exports.getAll = async (req, res, next) => {
     });
 };
 
+//hamma fanlarni statuslari bilan olish
 exports.getStatusByAll = async (req, res, next) => {
   const { page, limit, status } = req.query;
   const count = await Group.countDocuments();
@@ -77,6 +78,7 @@ exports.getStatus = async (req, res, next) => {
   });
 };
 
+//gruppani statusiga ko'ra olish
 exports.getGroupStatus = async (req, res, next) => {
   await Group.findOne({ _id: req.params.id })
     .select({ status: 1 })
@@ -97,6 +99,7 @@ exports.updateStatus = async (req, res) => {
   });
 };
 
+//o'qituvchilarni gruppasi bilan olish
 exports.teacherGroups = async (req, res) => {
   await Group.find({ teacher_id: req.params.id })
     .populate({ path: "science_id", select: "name" })
@@ -106,6 +109,7 @@ exports.teacherGroups = async (req, res) => {
     });
 };
 
+//fanni statusi bilan olish
 exports.scienceStatus = async (req, res) => {
   await Group.aggregate([
     { $match: { science_id: mongoose.Types.ObjectId(req.params.id) } },

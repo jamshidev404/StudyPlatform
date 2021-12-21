@@ -59,6 +59,7 @@ exports.getAll = async (req, res) => {
     });
 };
 
+//markazga oid bo'lgan hamma o'qituvchilarni olish
 exports.getTeacherAll = async (req, res) => {
   await Teacher.find({ center_id: req.body.center })
     .populate({ path: "user" })
@@ -69,6 +70,7 @@ exports.getTeacherAll = async (req, res) => {
     });
 };
 
+// o'qituvchi guruhlari bilan olish
 exports.teacherGroups = async (req, res) => {
   await Teacher.find({ group_id: req.params.id })
     .populate({})
@@ -78,6 +80,7 @@ exports.teacherGroups = async (req, res) => {
     });
 };
 
+// id bo'yicha bittasini olish
 exports.getOne = async (req, res, next) => {
   let teacher = await Teacher.findById({ _id: req.params.id })
     .populate({
