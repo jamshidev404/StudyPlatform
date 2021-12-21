@@ -31,7 +31,7 @@ const schema = mongoose.Schema(
     paybefore: {
       type: Number,
     },
-    directorname: {
+    name: {
       type: String,
       required: true,
     },
