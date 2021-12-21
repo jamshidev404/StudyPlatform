@@ -11,6 +11,7 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      message: "Boshqa login kiriting",
     },
     password: {
       type: String,
@@ -19,7 +20,6 @@ const schema = mongoose.Schema(
     center_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Markaz",
-      //required: true,
     },
   },
   { timestamps: true }
