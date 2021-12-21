@@ -87,10 +87,12 @@ exports.getGroupStatus = async (req, res, next) => {
 };
 
 exports.getPupil = async (req, res) => {
-  await Pupil.find({ group_id: req.params.id }).exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: datas, pupil: data });
-  });
+  await Pupil.find({ group_id: req.params.id })
+    .select({ name: 1 })
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, pupil: data });
+    });
 };
 
 exports.updateStatus = async (req, res) => {
