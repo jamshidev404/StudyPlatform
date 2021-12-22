@@ -5,7 +5,12 @@ const { protect, authorize } = require("../middleware/auth");
 
 router.post("/add", Teacher.create),
   router.post("/login", Teacher.login),
-  router.post("/all", protect, authorize("superadmin"), Teacher.getTeacherAll),
+  router.post(
+    "/all",
+    protect,
+    authorize("superadmin", "admin", "moderator", "teacher"),
+    Teacher.getTeacherAll
+  ),
   router.post("/getall", protect, authorize("superadmin"), Teacher.getAll),
   router.get("/getGroups/:id", Teacher.teacherGroups),
   router.get("/:id", Teacher.getOne),
