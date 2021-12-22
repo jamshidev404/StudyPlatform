@@ -6,8 +6,8 @@ const { protect, authorize } = require("../middleware/auth");
 router.post("/add", Pupil.create),
   router.post(
     "/all",
-    protect,
-    authorize("superadmin", "admin", "moderator"),
+    // protect,
+    // authorize("superadmin", "admin", "moderator"),
     Pupil.getAll
   ),
   router.post("/export/all", Pupil.ExportAll),
