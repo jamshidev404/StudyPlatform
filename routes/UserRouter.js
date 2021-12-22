@@ -8,7 +8,7 @@ router.post("/login", User.login);
 router.get("/me", User.me);
 router.get("/all", User.getAll);
 router.get("/:id", protect, authorize("superadmin"), User.getOne);
-router.put("/:id", protect, authorize("superadmin"), User.updateOne);
-router.delete("/:id", protect, authorize("superadmin"), User.deleteOne);
+router.put("/:id", User.updateOne);
+router.delete("/:id", User.deleteOne);
 
 module.exports = router;

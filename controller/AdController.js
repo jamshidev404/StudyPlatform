@@ -1,4 +1,3 @@
-const { populate } = require("../models/AdModel");
 const Elon = require("../models/AdModel");
 const Center = require("../models/CenterModel");
 

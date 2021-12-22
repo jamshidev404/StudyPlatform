@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Science = require("../controller/ScienceController");
+const { protect, authorize } = require("../middleware/auth");
 
 router.post("/add", Science.create),
-  router.post("/all", Science.getAll),
+  router.post(
+    "/all",
+    protect,
+    authorize("superadmin", "admin", "moderator"),
+    Science.getAll
+  ),
   router.get("/alltest", Science.getAllTest),
   router.post("/getall", Science.getScienceAll),
   router.get("/:id", Science.getOne),

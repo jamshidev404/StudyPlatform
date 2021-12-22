@@ -7,7 +7,7 @@ router.post("/add", Qabulxona.create);
 router.post(
   "/all",
   protect,
-  authorize("superadmin", "admin"),
+  authorize("superadmin", "admin", "moderator"),
   Qabulxona.getAll
 ),
   router.get("/:id", Qabulxona.getOne),
