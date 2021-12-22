@@ -8,7 +8,7 @@ router.post("/add", Teacher.create),
   router.post(
     "/all",
     protect,
-    authorize("superadmin", "moderator", "teacher"),
+    authorize("superadmin", "admin", "moderator", "teacher"),
     Teacher.getTeacherAll
   ),
   router.post(
