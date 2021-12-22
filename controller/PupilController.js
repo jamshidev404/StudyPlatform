@@ -9,7 +9,6 @@ exports.create = async (req, res) => {
     number: num,
     name: req.body.name,
     group_id: req.body.group_id,
-    ID: req.body.ID,
     user: req.body.user,
     phone: req.body.phone,
     address: req.body.address,

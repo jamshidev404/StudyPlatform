@@ -15,7 +15,7 @@ const schema = mongoose.Schema(
     },
     ID: {
       type: Number,
-      require: true,
+      //require: true,
     },
     user: {
       type: mongoose.Schema.ObjectId,
