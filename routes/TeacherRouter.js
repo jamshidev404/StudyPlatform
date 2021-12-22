@@ -11,7 +11,12 @@ router.post("/add", Teacher.create),
     authorize("superadmin", "moderator", "teacher"),
     Teacher.getTeacherAll
   ),
-  router.post("/getall", protect, authorize("superadmin"), Teacher.getAll),
+  router.post(
+    "/getall",
+    protect,
+    authorize("superadmin", "admin", "teacher"),
+    Teacher.getAll
+  ),
   router.get("/getGroups/:id", Teacher.teacherGroups),
   router.get("/:id", Teacher.getOne),
   router.put("/:id", Teacher.updateOne),
