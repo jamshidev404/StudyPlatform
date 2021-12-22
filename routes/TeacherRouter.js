@@ -3,7 +3,12 @@ const router = express.Router();
 const Teacher = require("../controller/TeacherController");
 const { protect, authorize } = require("../middleware/auth");
 
-router.post("/add", Teacher.create),
+router.post(
+  "/add",
+  protect,
+  authorize("superadmin", "admin", "moderator"),
+  Teacher.create
+),
   router.post("/login", Teacher.login),
   router.post(
     "/all",

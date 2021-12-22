@@ -3,11 +3,21 @@ const router = express.Router();
 const User = require("../controller/UserController");
 const { protect, authorize } = require("../middleware/auth");
 
-router.post("/add", protect, authorize("superadmin"), User.create);
+router.post(
+  "/add",
+  protect,
+  authorize("superadmin", "admin", "moderator"),
+  User.create
+);
 router.post("/login", User.login);
 router.get("/me", User.me);
 router.get("/all", User.getAll);
-router.get("/:id", protect, authorize("superadmin"), User.getOne);
+router.get(
+  "/:id",
+  protect,
+  authorize("superadmin", "admin", "moderator"),
+  User.getOne
+);
 router.put("/:id", User.updateOne);
 router.delete("/:id", User.deleteOne);
 
