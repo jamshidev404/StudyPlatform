@@ -13,6 +13,10 @@ const schema = mongoose.Schema(
       required: true,
       index: true,
     },
+    ID: {
+      type: Number,
+      require: true,
+    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",

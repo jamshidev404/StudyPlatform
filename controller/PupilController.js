@@ -1,7 +1,14 @@
 const Pupil = require("../models/PupilModel");
+const UserModel = require("../models/UserModel");
 
 exports.create = async (req, res) => {
-  let pupil = new Pupil(req.body);
+  const lastAdd = await Pupil.findOne().sort({ createdAt: -1 }).exec();
+  const num = lastAdd ? lastAdd.number + 1 : 1;
+
+  let pupil = new Pupil({
+    number: num,
+  });
+
   pupil
     .save()
     .then(() => {

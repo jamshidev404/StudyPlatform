@@ -36,7 +36,6 @@ exports.create = async (req, res) => {
         director.save();
         return res.status(200).json({ success: true, data: director });
       }
-
       if (user.role == "moderator") {
         req.body.user = user._id;
         const moderator = new Moderator(req.body);
@@ -44,7 +43,6 @@ exports.create = async (req, res) => {
         moderator.save();
         return res.status(200).json({ success: true, data: moderator });
       }
-
       if (user.role == "teacher") {
         req.body.user = user._id;
         const teacher = new Teacher(req.body);
