@@ -21,7 +21,7 @@ exports.create = async (req, res) => {
   user.password = password;
   user
     .save()
-    .then(() => {
+    .then(async () => {
       if (user.role == "superadmin") {
         req.body.user = user._id;
         const superadmin = new SuperAdmin(req.body);
@@ -53,12 +53,20 @@ exports.create = async (req, res) => {
 
       if (user.role == "pupil") {
         req.body.user = user._id;
-        // const lastAdd = Pupil.findOne().sort({ createdAt: -1 }).exec();
-        // const num = lastAdd ? lastAdd.number + 1 : 10000;
-        const pupil = new Pupil(req.body);
-        pupil.save();
-        return res.status(200).json({ success: true, data: pupil });
+        const lastAdd = await Pupil.findOne().sort({ createdAt: -1 }).exec();
+        const num = lastAdd ? lastAdd.number + 1 : 10000;
+        const pupil = new Pupil({
+          user: user._id,
+          number: num,
+        });
+        pupil
+          .save()
+          .then(console.log(true))
+          .catch((err) => {
+            console.log(err);
+          });
       }
+      return res.status(200).json({ success: true, data: pupil });
     })
     .catch((err) => {
       return res.status(401).json({ success: false, err });
