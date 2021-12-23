@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
   const num = lastAdd ? lastAdd.number + 1 : 10000;
 
   let pupil = new Pupil({
-    number: num,
+    //number: num,
     name: req.body.name,
     group_id: req.body.group_id,
     user: req.body.user,
