@@ -56,16 +56,12 @@ exports.create = async (req, res) => {
         const lastAdd = await Pupil.findOne().sort({ createdAt: -1 }).exec();
         const num = lastAdd ? lastAdd.number + 1 : 10000;
         const pupil = new Pupil({
+          user: user._id,
           number: num,
         });
-        pupil
-          .save()
-          .then(console.log(true))
-          .catch((err) => {
-            console.log(err);
-          });
+        pupil.save();
+        return res.status(200).json({ success: true, data: pupil });
       }
-      return res.status(200).json({ success: true, data: pupil });
     })
     .catch((err) => {
       return res.status(401).json({ success: false, err });

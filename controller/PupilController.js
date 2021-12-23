@@ -2,7 +2,7 @@ const Pupil = require("../models/PupilModel");
 const UserModel = require("../models/UserModel");
 
 exports.create = async (req, res) => {
-  let pupil = new Pupil(req.body);
+  let pupil = new Pupil();
 
   pupil
     .save()
