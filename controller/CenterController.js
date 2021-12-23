@@ -1,12 +1,13 @@
 const Center = require("../models/CenterModel");
+const Science = require("../models/ScienceModel");
 
 exports.create = (req, res) => {
-  const markaz = new Center(req.body);
+  const center = new Center(req.body);
 
-  markaz
+  center
     .save()
     .then(() => {
-      res.status(200).json({ success: true, data: markaz });
+      res.status(200).json({ success: true, data: center });
     })
     .catch((err) => {
       res.status(400).json({ success: false, err });
@@ -47,8 +48,8 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.rm = async (req, res, next) => {
-  await Center.remove({ _id: req.params.id }).exec((err, data) => {
-    if (err) return res.status(400).json({ success: false, err });
-    return res.status(200).json({ success: true, data: "Ma'lumot o'chirildi" });
-  });
+  await Science.deleteMany({ science: req.params.id });
+
+  await Center.findByIdAndDelete({ _id: req.params.id });
+  return res.status(200).json({ success: true, data: "Ma'lumot o'chirildi" });
 };
