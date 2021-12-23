@@ -25,7 +25,7 @@ const schema = mongoose.Schema(
 );
 schema.pre("remove", async function (next) {
   await this.model("Teacher").deleteMany({ user: this._id });
-  //await this.model("SuperAdmin").deleteMany({ user: this._id });
+
   await this.model("Pupil").deleteMany({ user: this._id });
   await this.model("Moderator").deleteMany({ user: this._id });
   await this.model("Markaz").deleteMany({ user: this._id });

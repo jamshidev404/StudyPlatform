@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Statitika = require("../controller/StatistikaController");
 const { protect, authorize } = require("../middleware/auth");
 
-router.get(
+router.post(
   "/all",
   protect,
   authorize("superadmin", "admin", "moderator"),
