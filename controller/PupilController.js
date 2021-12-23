@@ -2,20 +2,7 @@ const Pupil = require("../models/PupilModel");
 const UserModel = require("../models/UserModel");
 
 exports.create = async (req, res) => {
-  const lastAdd = await Pupil.findOne().sort({ createdAt: -1 }).exec();
-  const num = lastAdd ? lastAdd.number + 1 : 10000;
-
-  let pupil = new Pupil({
-    //number: num,
-    name: req.body.name,
-    group_id: req.body.group_id,
-    user: req.body.user,
-    phone: req.body.phone,
-    address: req.body.address,
-    date: req.body.date,
-    gender: req.body.gender,
-    center_id: req.body.center_id,
-  });
+  let pupil = new Pupil(req.body);
 
   pupil
     .save()

@@ -53,9 +53,10 @@ exports.create = async (req, res) => {
 
       if (user.role == "pupil") {
         req.body.user = user._id;
+        const lastAdd = Pupil.findOne().sort({ createdAt: -1 }).exec();
+        const num = lastAdd ? lastAdd.number + 1 : 10000;
         const pupil = new Pupil(req.body);
-
-        pupil.save();
+        number: num, pupil.save();
         return res.status(200).json({ success: true, data: pupil });
       }
     })
