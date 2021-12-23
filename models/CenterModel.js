@@ -58,7 +58,6 @@ const schema = mongoose.Schema(
 );
 schema.pre("remove", async function (next) {
   await this.model("User").deleteMany({ center_id: this._id });
-
   await this.model("Qabulxona").deleteMany({ center_id: this._id });
   await this.model("Elon").deleteMany({ center_id: this._id });
   await this.model("CenterPay").deleteMany({ center_id: this._id });
