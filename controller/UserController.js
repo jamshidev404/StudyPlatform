@@ -56,7 +56,6 @@ exports.create = async (req, res) => {
         const lastAdd = await Pupil.findOne().sort({ createdAt: -1 }).exec();
         const num = lastAdd ? lastAdd.number + 1 : 10000;
         const pupil = new Pupil({
-          user: user._id,
           number: num,
         });
         pupil
