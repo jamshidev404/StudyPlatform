@@ -32,7 +32,7 @@ exports.getAll = async (req, res, next) => {
     });
 };
 
-//hamma fanlarni statuslari bilan olish
+//hamma gruppalarni statuslari bilan olish
 exports.getStatusByAll = async (req, res, next) => {
   const { page, limit, status } = req.query;
   const count = await Group.countDocuments();
@@ -48,9 +48,8 @@ exports.getStatusByAll = async (req, res, next) => {
     });
 };
 
-// id bo'yicha bittasini olish
+// id bo'yicha bittasini o'quvchilari bilan olish
 exports.getGroup = async (req, res, next) => {
-  // const count = await Group.countDocuments();
   const datas = await Group.findById({ _id: req.params.id })
     .populate({
       path: "teacher_id",
@@ -61,6 +60,16 @@ exports.getGroup = async (req, res, next) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data: datas, pupil: data });
   });
+};
+
+//id bo'yicha bittasini olish
+exports.getbyGroup = async (req, res, next) => {
+  const datas = await Group.findById({ _id: req.params.id }).exec(
+    (err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data: datas, pupil: data });
+    }
+  );
 };
 
 exports.getStatus = async (req, res, next) => {

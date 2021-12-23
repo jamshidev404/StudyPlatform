@@ -12,6 +12,7 @@ router.post("/status", Group.getStatusByAll),
     Group.getAll
   ),
   router.get("/:id", Group.getGroup),
+  router.get("/by/:id", Group.getbyGroup),
   router.get("/pupil/:id", Group.getPupil),
   router.get("/teacher/:id", Group.teacherGroups), //o'qituvchi guruhlarini olish
   router.get("/science/:id", Group.scienceStatus), //guruhlar statuslari bilan olish
