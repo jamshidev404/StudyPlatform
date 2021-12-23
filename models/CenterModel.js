@@ -56,19 +56,9 @@ const schema = mongoose.Schema(
   },
   { timestamps: true }
 );
-schema.pre("remove", async function (next) {
-  await this.model("User").deleteMany({ center_id: this._id });
-  await this.model("Qabulxona").deleteMany({ center_id: this._id });
-  await this.model("Elon").deleteMany({ center_id: this._id });
-  await this.model("CenterPay").deleteMany({ center_id: this._id });
-  await this.model("Exam").deleteMany({ center_id: this._id });
-  await this.model("Group").deleteMany({ center_id: this._id });
-  await this.model("Moderator").deleteMany({ center_id: this._id });
-  await this.model("Pay").deleteMany({ center_id: this._id });
-  await this.model("Pupil").deleteMany({ center_id: this._id });
-  await this.model("Science").deleteMany({ center_id: this._id });
-  await this.model("Teacher").deleteMany({ center_id: this._id });
-  next();
-});
+// schema.pre("remove", async function (next) {
+//   await this.model("User").deleteMany({ center_id: this._id });
+//   next();
+// });
 
 module.exports = mongoose.model("Markaz", schema);
