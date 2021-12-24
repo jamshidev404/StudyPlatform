@@ -75,7 +75,6 @@ exports.login = async (req, res, next) => {
     if (!bcrypt.compareSync(req.body.password, data.password)) {
       return res.status(400).json({ success: false, data: "Password wrong" });
     }
-
     if (data.status == false) {
       return res
         .status(400)
@@ -148,6 +147,10 @@ exports.getOne = async (req, res, next) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data });
   });
+};
+
+exports.getUserStatus = async (req, res) => {
+  await User.findOne(req.params.id).select({});
 };
 
 exports.updateOne = async (req, res, next) => {
