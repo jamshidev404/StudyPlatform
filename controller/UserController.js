@@ -76,7 +76,7 @@ exports.login = async (req, res, next) => {
       return res.status(400).json({ success: false, data: "Password wrong" });
     }
 
-    if ("false") {
+    if (data.status == "false") {
       return res
         .status(400)
         .json({ success: false, data: "Qayta urinib ko'ring" });

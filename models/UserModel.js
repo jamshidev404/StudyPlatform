@@ -16,6 +16,10 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: Boolean,
+      default: false,
+    },
     center_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Markaz",
