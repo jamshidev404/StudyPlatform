@@ -150,9 +150,9 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.updateStatus = async (req, res) => {
-  await Group.updateOne(
+  await User.updateOne(
     { _id: req.params.id },
-    { $set: req.body },
+    { $set: req.body.status },
     { new: true }
   ).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
