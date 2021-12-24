@@ -17,6 +17,7 @@ exports.create = async (req, res) => {
     role: req.body.role,
     login: req.body.login,
     password: req.body.password,
+    status: req.body.status,
   });
   user.password = password;
   user
