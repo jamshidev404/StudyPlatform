@@ -152,7 +152,7 @@ exports.getOne = async (req, res, next) => {
 exports.updateStatus = async (req, res) => {
   await User.updateOne(
     { _id: req.params.id },
-    { $set: req.body.status },
+    { $set: { status: true } },
     { new: true }
   ).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
