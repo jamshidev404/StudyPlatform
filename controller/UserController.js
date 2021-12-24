@@ -151,7 +151,8 @@ exports.getOne = async (req, res, next) => {
 
 exports.getUserStatus = async (req, res) => {
   await User.findOne(req.params.id)
-    .select({ name: 1, center_id: 1 })
+    //.populate({ path: "center_id", select: [""] })
+    .select({ role: 1, center_id: 1 })
     .exec((err, data) => {
       if (err) return res.status(404).json({ success: false, err });
       return res.status(200).json({ success: true, data });
