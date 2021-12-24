@@ -50,7 +50,7 @@ const schema = mongoose.Schema(
     },
     status: {
       type: Boolean,
-      required: false,
+      default: false,
     },
     user: {
       type: mongoose.Schema.ObjectId,
