@@ -14,7 +14,6 @@ const schema = mongoose.Schema(
     },
     status: {
       type: Boolean,
-      default: false,
     },
     password: {
       type: String,
