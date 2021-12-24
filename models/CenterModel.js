@@ -48,6 +48,10 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: Boolean,
+      required: false,
+    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
