@@ -77,7 +77,9 @@ exports.login = async (req, res, next) => {
     }
 
     if (data.status == "false") {
-      return res.status(400).json({ success: false });
+      return res
+        .status(400)
+        .json({ success: false, data: "Qayta urinib ko'ring" });
     }
 
     const payload = { id: data._id };
