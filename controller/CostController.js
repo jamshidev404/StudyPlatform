@@ -1,7 +1,7 @@
-const Accounting = require("../models/AccountingModel");
+const Cost = require("../models/CostModel");
 
 exports.create = async (req, res) => {
-  let result = new Accounting(req.body);
+  let result = new Cost(req.body);
 
   await result
     .save()
@@ -15,8 +15,8 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res, next) => {
   const { page, limit } = req.query;
-  const count = await Accounting.countDocuments();
-  await Accounting.find({ center_id: req.body.center })
+  const count = await Cost.countDocuments();
+  await Cost.find({ center_id: req.body.center })
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit * 1)
@@ -27,14 +27,14 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-  await Accounting.findOne({ _id: req.params.id }).exec((err, data) => {
+  await Cost.findOne({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data: data });
   });
 };
 
 exports.updateOne = async (req, res, next) => {
-  await Accounting.updateOne(
+  await Cost.updateOne(
     { _id: req.params.id },
     { $set: req.body },
     { new: true }
@@ -45,10 +45,8 @@ exports.updateOne = async (req, res, next) => {
 };
 
 exports.rm = async (req, res, next) => {
-  await Accounting.findByIdAndDelete({ _id: req.params.id }).exec(
-    (err, data) => {
-      if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true, data: data });
-    }
-  );
+  await Cost.findByIdAndDelete({ _id: req.params.id }).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data: data });
+  });
 };
