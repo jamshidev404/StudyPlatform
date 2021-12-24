@@ -11,13 +11,14 @@ router.post(
 );
 router.post("/login", User.login);
 router.get("/me", User.me);
-router.get("/all", User.getAll);
 router.get(
-  "/:id",
+  "/all",
   protect,
   authorize("superadmin", "admin", "moderator"),
-  User.getOne
+  User.getAll
 );
+router.get("/:id", User.getOne);
+router.put("/status/:id", User.updateStatus);
 router.put("/:id", User.updateOne);
 router.delete("/:id", User.deleteOne);
 
