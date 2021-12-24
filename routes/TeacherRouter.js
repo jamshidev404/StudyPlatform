@@ -9,7 +9,6 @@ router.post(
   authorize("superadmin", "admin", "moderator"),
   Teacher.create
 ),
-  router.post("/login", Teacher.login),
   router.post(
     "/all",
     protect,

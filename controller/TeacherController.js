@@ -5,11 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 exports.create = async (req, res) => {
-  // const salt = await bcrypt.genSaltSync(12);
-  // const password = await bcrypt.hashSync(req.body.password, salt);
-
   let teacher = new Teacher(req.body);
-  //teacher.password = password;
   teacher
     .save()
     .then(() => {
@@ -18,31 +14,6 @@ exports.create = async (req, res) => {
     .catch((err) => {
       return res.status(400).json({ success: false, err });
     });
-};
-
-exports.login = async (req, res, next) => {
-  await Teacher.findOne({ _id: req.params.id }).exec((err, data) => {
-    if (err) {
-      return res.status(400).json({ success: false });
-    }
-    if (!data) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
-    }
-    if (!bcrypt.compareSync(req.body.password, data.password)) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Password wrong" });
-    }
-
-    const payload = { id: data._id };
-
-    const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY, {
-      expiresIn: process.env.TOKEN_EXPIRES_IN,
-    });
-    return res.status(200).json({ success: true, token });
-  });
 };
 
 exports.getAll = async (req, res) => {

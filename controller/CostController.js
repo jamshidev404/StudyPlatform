@@ -27,7 +27,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-  await Cost.findOne({ _id: req.params.id }).exec((err, data) => {
+  await Cost.findById({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });
     return res.status(200).json({ success: true, data: data });
   });

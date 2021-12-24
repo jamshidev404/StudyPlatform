@@ -150,7 +150,12 @@ exports.getOne = async (req, res, next) => {
 };
 
 exports.getUserStatus = async (req, res) => {
-  await User.findOne(req.params.id).select({});
+  await User.findOne(req.params.id)
+    .select({ name: 1, center_id: 1 })
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data });
+    });
 };
 
 exports.updateOne = async (req, res, next) => {
