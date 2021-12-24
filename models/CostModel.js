@@ -18,6 +18,11 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    center_id: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Markaz",
+      required: true,
+    },
   },
   { timestamps: true }
 );
