@@ -76,6 +76,10 @@ exports.login = async (req, res, next) => {
       return res.status(400).json({ success: false, data: "Password wrong" });
     }
 
+    if (data.status == "false") {
+      return res.status(400).json({ success: false });
+    }
+
     const payload = { id: data._id };
 
     const token = jwt.sign(payload, process.env.TOKEN_SECRET_KEY, {
