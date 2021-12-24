@@ -12,6 +12,10 @@ const schema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    status: {
+      type: Boolean,
+      default: false,
+    },
     password: {
       type: String,
       required: true,
