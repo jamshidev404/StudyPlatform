@@ -105,7 +105,7 @@ exports.getPupil = async (req, res) => {
 exports.updateStatus = async (req, res) => {
   await Group.updateOne(
     { _id: req.params.id },
-    { $set: req.body },
+    { $set: { status: req.body.status } },
     { new: true }
   ).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
@@ -131,6 +131,17 @@ exports.scienceStatus = async (req, res) => {
       $group: { _id: "$status", count: { $sum: 1 } },
     },
   ]).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data });
+  });
+};
+
+exports.updateOne = async (req, res, next) => {
+  await Group.updateOne(
+    { _id: req.params.id },
+    { $set: req.body },
+    { new: true }
+  ).exec((err, data) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({ success: true, data });
   });
