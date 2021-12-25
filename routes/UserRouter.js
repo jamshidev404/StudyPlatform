@@ -17,6 +17,7 @@ router.get(
   authorize("superadmin", "admin", "moderator"),
   User.getAll
 );
+router.post("/who", User.getUserForPay);
 router.get("/:id", User.getOne);
 router.put("/status/:id", User.updateStatus);
 router.put("/:id", User.updateOne);

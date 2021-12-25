@@ -28,10 +28,12 @@ exports.getAll = async (req, res, next) => {
 };
 
 exports.getOne = async (req, res, next) => {
-  await Qabulxona.findOne({ _id: req.params.id }).exec((err, data) => {
-    if (err) return res.status(404).json({ success: false, err });
-    return res.status(200).json({ success: true, data: data });
-  });
+  await Qabulxona.findOne({ _id: req.params.id })
+    .populate({ path: "science_id", select: "name" })
+    .exec((err, data) => {
+      if (err) return res.status(404).json({ success: false, err });
+      return res.status(200).json({ success: true, data: data });
+    });
 };
 
 exports.updateOne = async (req, res, next) => {

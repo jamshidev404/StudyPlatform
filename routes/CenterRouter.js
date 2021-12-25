@@ -4,6 +4,7 @@ const { protect, authorize } = require("../middleware/auth");
 const { asyncs } = require("../middleware/async");
 
 router.post("/add", Markaz.create);
+router.post("/who", Markaz.getUserForPay);
 router.get("/all", Markaz.getAll);
 router.get("/:id", Markaz.getOne);
 router.put("/:id", Markaz.updateOne);

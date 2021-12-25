@@ -27,6 +27,13 @@ exports.getAll = async (req, res, next) => {
     });
 };
 
+exports.getUserForPay = async (req, res) => {
+  await Center.find({ _id: req.body.center }).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data: data });
+  });
+};
+
 exports.updateOne = async (req, res, next) => {
   await Center.updateOne(
     { _id: req.params.id },
