@@ -9,6 +9,7 @@ router.post(
   authorize("superadmin", "admin", "moderator"),
   Cost.getAll
 );
+router.post("/who", Cost.getUserForPay);
 router.get("/:id", Cost.getOne);
 router.put("/:id", Cost.updateOne);
 router.delete("/:id", Cost.rm);

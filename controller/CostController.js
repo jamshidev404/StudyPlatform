@@ -26,6 +26,13 @@ exports.getAll = async (req, res, next) => {
     });
 };
 
+exports.getUserForPay = async (req, res) => {
+  await Cost.find({ center_id: req.body.center }).populate({
+    path: "user",
+    select: { role: ["admin", "moderator"] },
+  });
+};
+
 exports.getOne = async (req, res, next) => {
   await Cost.findById({ _id: req.params.id }).exec((err, data) => {
     if (err) return res.status(404).json({ success: false, err });

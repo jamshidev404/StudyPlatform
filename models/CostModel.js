@@ -23,6 +23,11 @@ const schema = mongoose.Schema(
       ref: "Markaz",
       required: true,
     },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );
