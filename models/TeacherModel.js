@@ -11,7 +11,6 @@ const schema = mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "Science",
-        index: true,
         required: true,
       },
     ],
@@ -19,8 +18,7 @@ const schema = mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "Group",
-        index: true,
-        //required: true
+        required: true,
       },
     ],
     center_id: {
@@ -41,7 +39,6 @@ const schema = mongoose.Schema(
     },
     experience: {
       type: String,
-      //required: true
     },
     phone: {
       type: Number,

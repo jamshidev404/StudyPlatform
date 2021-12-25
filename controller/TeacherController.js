@@ -1,8 +1,4 @@
 const Teacher = require("../models/TeacherModel");
-const Science = require("../models/ScienceModel");
-const Group = require("../models/GroupsModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 exports.create = async (req, res) => {
   let teacher = new Teacher(req.body);
@@ -33,8 +29,8 @@ exports.getAll = async (req, res) => {
 //markazga oid bo'lgan hamma o'qituvchilarni olish
 exports.getTeacherAll = async (req, res) => {
   await Teacher.find({ center_id: req.body.center })
-    .populate({ path: "user" })
     .sort({ createdAt: -1 })
+    .populate({ path: "user" })
     .exec((err, data) => {
       if (err) return res.status(400).json({ success: false, err });
       return res.status(200).json({ success: true, data });
