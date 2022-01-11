@@ -8,11 +8,9 @@ const schema = mongoose.Schema(
     },
     starttime: {
       type: String,
-      //required: true,
     },
     endtime: {
       type: String,
-      //required: true,
     },
     days: {
       type: Array,
