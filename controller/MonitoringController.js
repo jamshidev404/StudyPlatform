@@ -2,11 +2,6 @@ const Monitoring = require("../models/MonitoringModel");
 
 exports.create = (req, res) => {
   const monitoring = new Monitoring(req.body);
-  // if (req.body.type == "+" || req.body.type == "-") {
-  //   $set: {
-  //     davomat: req.body.type;
-  //   }
-  // }
 
   monitoring
     .save()

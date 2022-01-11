@@ -40,6 +40,7 @@ app.use("/api/ad", require("./routes/AdRouter"));
 app.use("/api/statistika", require("./routes/StatistikaRouter"));
 app.use("/api/cost", require("./routes/CostRouter"));
 app.use("/api/monitoring", require("./routes/MonitoringRouter"));
+app.use("/api/days", require("./routes/DayRouter"));
 
 // Connect to DataBase
 const port = process.env.PORT || 7000;

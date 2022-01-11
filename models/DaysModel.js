@@ -1,15 +1,18 @@
 const mongoose = require("mongoose");
 
-const schema = mongoose.Schema({
-  group_id: {
-    type: mongoose.Schema.ObjecyId,
-    ref: "Group",
-    required: true,
+const schema = mongoose.Schema(
+  {
+    group_id: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Group",
+      required: true,
+    },
+    days: {
+      type: String,
+      default: Date,
+    },
   },
-  days: {
-    type: Array,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Days", schema);

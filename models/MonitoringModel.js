@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
-    // day_id: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "Days",
-    //   //required: true,
-    // },
+    day_id: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Days",
+      required: true,
+    },
 
     group_id: {
       type: mongoose.Schema.ObjectId,
@@ -16,11 +16,6 @@ const schema = mongoose.Schema(
     pupil_id: {
       type: mongoose.Schema.ObjectId,
       ref: "Pupil",
-      required: true,
-    },
-    center_id: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Markaz",
       required: true,
     },
     baho: {
