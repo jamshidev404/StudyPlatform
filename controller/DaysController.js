@@ -14,13 +14,10 @@ exports.create = (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  await DayToday.find({ group_id: req.body.group_id })
-
-    .sort({ createdAt: -1 })
-    .exec((err, data) => {
-      if (err) return res.status(400).json({ success: false, err });
-      return res.status(200).json({ success: true, data });
-    });
+  await DayToday.find({ group_id: req.body.group_id }).exec((err, data) => {
+    if (err) return res.status(400).json({ success: false, err });
+    return res.status(200).json({ success: true, data });
+  });
 };
 
 exports.rm = async (req, res, next) => {

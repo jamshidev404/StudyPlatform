@@ -114,7 +114,7 @@ exports.getUserForPay = async (req, res) => {
 exports.me = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const user = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET_KEY);
-  //console.log( users )// id ni qaytaradi
+  //console.log( user )// id ni qaytaradi
   let userd = await User.findOne({ _id: user.id });
   let director = null;
   if (userd.role == "admin") {
