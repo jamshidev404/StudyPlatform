@@ -10,8 +10,8 @@ const SuperAdmin = require("../models/SuperAdmin");
 const Moderator = require("../models/ModeratorModel");
 
 exports.create = async (req, res) => {
-  const salt = await bcrypt.genSaltSync(12);
-  const password = await bcrypt.hashSync(req.body.password, salt);
+  // const salt = await bcrypt.genSaltSync(12);
+  // const password = await bcrypt.hashSync(req.body.password, salt);
 
   let user = new User({
     role: req.body.role,
@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
     password: req.body.password,
     status: req.body.status,
   });
-  user.password = password;
+  //user.password = password;
   user
     .save()
     .then(async () => {

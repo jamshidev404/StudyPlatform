@@ -5,7 +5,7 @@ const schema = mongoose.Schema(
     role: {
       type: String,
       enum: ["superadmin", "admin", "parents", "moderator", "teacher", "pupil"],
-      required: true,
+      //required: true,
     },
     login: {
       type: String,
@@ -17,7 +17,7 @@ const schema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      //required: true,
     },
     center_id: {
       type: mongoose.Schema.ObjectId,

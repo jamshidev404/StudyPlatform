@@ -13,8 +13,8 @@ router.post("/login", User.login);
 router.get("/me", User.me);
 router.get(
   "/all",
-  protect,
-  authorize("superadmin", "admin", "moderator"),
+  // protect,
+  // authorize("superadmin", "admin", "moderator"),
   User.getAll
 );
 router.post("/who", User.getUserForPay);
