@@ -6,7 +6,7 @@ const { protect, authorize } = require("../middleware/auth");
 router.post(
   "/add",
   // protect,
-  // authorize("superadmin", "admin", "moderator"),
+   authorize("superadmin", "admin", "moderator"),
   User.create
 );
 router.post("/login", User.login);
@@ -14,7 +14,7 @@ router.get("/me", User.me);
 router.get(
   "/all",
   // protect,
-  // authorize("superadmin", "admin", "moderator"),
+   authorize("superadmin", "admin", "moderator"),
   User.getAll
 );
 router.post("/who", User.getUserForPay);
