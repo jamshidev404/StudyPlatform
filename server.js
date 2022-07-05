@@ -43,7 +43,7 @@ app.use("/api/monitoring", require("./routes/MonitoringRouter"));
 app.use("/api/days", require("./routes/DayRouter"));
 
 // Connect to DataBase
-const port = process.env.PORT || 7000;
+const port = process.env.PORT;
 const mongoDB =
   "mongodb+srv://jamxon:11225598@cluster0.pucsq.mongodb.net/study?retryWrites=true&w=majority";
 //"mongodb://localhost:27017/study";
