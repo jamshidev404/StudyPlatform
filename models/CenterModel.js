@@ -56,6 +56,7 @@ const schema = mongoose.Schema(
   },
   { timestamps: true }
 );
+
 // schema.pre("remove", async function (next) {
 //   await this.model("User").deleteMany({ center_id: this._id });
 //   next();

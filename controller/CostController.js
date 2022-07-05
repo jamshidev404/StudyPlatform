@@ -1,5 +1,4 @@
 const Cost = require("../models/CostModel");
-
 exports.create = async (req, res) => {
   let result = new Cost(req.body);
 
